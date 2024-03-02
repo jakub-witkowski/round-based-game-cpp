@@ -1,0 +1,6 @@
+#.vscode folder
+.vscode
+
+#executable
+/build/player
+
