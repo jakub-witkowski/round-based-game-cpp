@@ -1,10 +1,14 @@
 #include "../headers/TRound.h"
-#include <string>
 
-TRound::TRound(char who, std::string s)
+#include <string>
+#include <fstream>
+
+TRound::TRound(char who, std::string s1, std::string s2, std::string s3)
 {
     this->which_player = who;
-    this->map_ptr = new TMap(s);
+    this->map_ptr = new TMap(s1);
+    this->status_filename = s2;
+    this->orders_filename = s3;
     this->player_ptr = new TPlayer(this->which_player, 2000);
     std::cout << "TRound constructor called" << std::endl;
 }

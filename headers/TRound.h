@@ -7,7 +7,7 @@
 class TRound
 {
     public:
-        TRound(char, std::string);
+        TRound(char, std::string, std::string, std::string);
         ~TRound();
 
         void read_status();
@@ -16,6 +16,8 @@ class TRound
 
     private:
         char which_player;
+        std::string status_filename;
+        std::string orders_filename;
         TMap* map_ptr{nullptr};
         TPlayer* player_ptr{nullptr};
 };
