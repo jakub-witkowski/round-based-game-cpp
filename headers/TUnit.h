@@ -1,0 +1,37 @@
+#ifndef UNIT_H
+#define UNIT_H
+
+#include <iostream>
+
+class TUnit
+{   
+    public:
+        TUnit();
+        TUnit(char, unsigned int);
+        ~TUnit();
+
+        friend std::ostream& operator<<(std::ostream&, TUnit*);
+
+        void set_affiliation(char);
+        void set_type(char);
+        void set_coordinates(unsigned int, unsigned int);
+        void set_id(unsigned int);
+        void set_stamina(unsigned int);
+        void set_speed(unsigned int);
+        void set_cost(unsigned int);
+        void set_attack_range(unsigned int);
+        void set_training_time(unsigned int);
+
+    protected:
+        char affiliation;
+        char type;
+        std::pair<unsigned int,unsigned int> coordinates;
+        unsigned int id;
+        unsigned int stamina;
+        unsigned int speed;
+        unsigned int cost;
+        unsigned int attack_range;
+        unsigned int training_time;
+};
+
+#endif
