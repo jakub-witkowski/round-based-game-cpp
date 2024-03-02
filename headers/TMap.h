@@ -14,11 +14,16 @@ class TMap
         unsigned int parse_map_x();
         unsigned int parse_map_y();
         void load_map();
+        
+        unsigned int get_map_size_x();
+        unsigned int get_map_size_y();
+        
         friend std::ostream& operator<<(std::ostream&, TMap*);
+
 
     private:
         std::string filename;
-        const unsigned int map_size_x;
+        unsigned int map_size_x;
         unsigned int map_size_y;
         int** map_fields{nullptr};
 

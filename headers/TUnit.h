@@ -7,7 +7,6 @@ class TUnit
 {   
     public:
         TUnit();
-        TUnit(char, unsigned int);
         ~TUnit();
 
         friend std::ostream& operator<<(std::ostream&, TUnit*);
@@ -21,8 +20,12 @@ class TUnit
         void set_cost(unsigned int);
         void set_attack_range(unsigned int);
         void set_training_time(unsigned int);
+        void update_unit_counter();
+        unsigned int get_unit_count();
 
     protected:
+        inline static unsigned int unit_counter;
+
         char affiliation;
         char type;
         std::pair<unsigned int,unsigned int> coordinates;

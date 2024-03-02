@@ -1,5 +1,5 @@
-#ifndef KNIGHT_H
-#define KNIGHT_H
+#ifndef TKNIGHT_H
+#define TKNIGHT_H
 
 #include "../headers/TUnit.h"
 

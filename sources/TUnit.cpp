@@ -55,3 +55,13 @@ void TUnit::set_training_time(unsigned int trt)
 {
     this->training_time = trt;
 }
+
+void TUnit::update_unit_counter()
+{
+    unit_counter++;
+}
+
+unsigned int TUnit::get_unit_count()
+{
+    return unit_counter;
+}

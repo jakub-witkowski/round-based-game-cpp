@@ -24,7 +24,7 @@ TPlayer::~TPlayer()
     std::cout << "TPlayer destructor called" << std::endl;
 }
 
-void TPlayer::order_traning()
+void TPlayer::order_traning(char aff)
 {
 
 }

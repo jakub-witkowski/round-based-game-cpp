@@ -34,3 +34,8 @@ TPlayer* TRound::get_player_ptr()
 {
     return this->player_ptr;
 }
+
+TMap* TRound::get_map_ptr()
+{
+    return this->map_ptr;
+}

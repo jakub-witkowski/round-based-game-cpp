@@ -14,7 +14,7 @@ class TPlayer
 
         friend std::ostream& operator<<(std::ostream&, TPlayer*);
 
-    void order_traning();
+    void order_traning(char);
     void move_units();
     void attack_enemy();
 

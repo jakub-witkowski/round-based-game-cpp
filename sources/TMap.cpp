@@ -77,3 +77,13 @@ void TMap::load_map()
         row++;
     }
 }
+
+unsigned int TMap::get_map_size_x()
+{
+    return this->map_size_x;
+}
+
+unsigned int TMap::get_map_size_y()
+{
+    return this->map_size_y;
+}
