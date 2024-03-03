@@ -3,6 +3,7 @@
 #include "../headers/TMap.h"
 #include "../headers/TPlayer.h"
 #include "../headers/TRound.h"
+#include "../headers/TSwordsman.h"
 #include "../headers/TUnit.h"
 
 #include "../headers/functions.h"

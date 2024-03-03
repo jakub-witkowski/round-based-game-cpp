@@ -2,7 +2,7 @@ CC=g++
 CXXFLAGS=-g -Wall
 CFLAGS=-std=c++17
 srcdir = ../sources
-SOURCES=$(srcdir)/player1.cpp $(srcdir)/TArcher.cpp $(srcdir)/TMap.cpp $(srcdir)/TKnight.cpp $(srcdir)/TUnit.cpp $(srcdir)/TPlayer.cpp $(srcdir)/TRound.cpp
+SOURCES=$(srcdir)/player1.cpp $(srcdir)/TArcher.cpp $(srcdir)/TKnight.cpp $(srcdir)/TMap.cpp $(srcdir)/TPlayer.cpp $(srcdir)/TRound.cpp $(srcdir)/TSwordsman.cpp $(srcdir)/TUnit.cpp
 
 all: compile run
 
