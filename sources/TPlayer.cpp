@@ -24,7 +24,7 @@ TPlayer::~TPlayer()
     std::cout << "TPlayer destructor called" << std::endl;
 }
 
-void TPlayer::order_traning(char aff)
+void TPlayer::order_training(char aff)
 {
 
 }
@@ -37,4 +37,19 @@ void TPlayer::move_units()
 void TPlayer::attack_enemy()
 {
 
+}
+
+void TPlayer::set_gold(long g)
+{
+    this->gold = g;
+}
+
+void TPlayer::add_base(std::string line)
+{
+    this->units.push_back(new TUnit()); // modify 
+}
+
+void TPlayer::add_unit(std::string line)
+{
+    this->units.push_back(new TUnit()); // modify
 }

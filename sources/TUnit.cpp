@@ -56,6 +56,11 @@ void TUnit::set_training_time(unsigned int trt)
     this->training_time = trt;
 }
 
+void TUnit::set_is_base_busy(bool b)
+{
+    this->is_base_busy = b;
+}
+
 void TUnit::update_unit_counter()
 {
     unit_counter++;

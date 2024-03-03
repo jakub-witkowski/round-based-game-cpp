@@ -27,7 +27,32 @@ TRound::~TRound()
 
 void TRound::read_status()
 {
+    std::ifstream input{status_filename};
+    unsigned int space_count{0};
 
+    for (std::string line; std::getline(input, line);)
+    {
+        for (size_t i = 0; i < line.size(); i++)
+        {
+            if (line[i] == ' ')
+                space_count++;
+        }
+
+        if (space_count == 0)
+        {
+            this->player_ptr->set_gold(std::stol(line));
+        }
+        else if (space_count == 6)
+        {
+            this->player_ptr->add_base(line);
+        }
+        else if (space_count == 5)
+        {
+            this->player_ptr->add_unit(line);
+        }
+
+        space_count = 0;
+    }
 }
 
 void TRound::write_orders()

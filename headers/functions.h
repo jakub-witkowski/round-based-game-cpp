@@ -2,6 +2,7 @@
 #define FUNCTIONS_H
 
 #include <iostream>
+#include <iomanip>
 #include "TMap.h"
 #include "TUnit.h"
 
@@ -35,6 +36,39 @@ std::ostream& operator<<(std::ostream& view, TUnit* u)
     view << "Cost: " << u->cost << " " << std::endl;
     view << "Attack range: " << u->attack_range << " " << std::endl;
     view << "Training time left: " << u->training_time << " " << std::endl;
+
+    return view;
+}
+
+/* print units currently in play */
+std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
+{
+    view
+        << " Id:"
+        << std::setw(9) << "Aff"
+        << std::setw(9) << "Type"
+        << std::setw(9) << "X, Y"
+        << std::setw(9) << "St"
+        << std::setw(9) << "Time"
+        << std::setw(9) << "Busy"
+        << std::endl;
+
+    for (auto i : u)
+    {
+        view
+            << " " << i->id
+            << std::setw(9) << i->affiliation
+            << std::setw(9) << i->type
+            << std::setw(3) << i->coordinates.first << ", " << i->coordinates.second
+            << std::setw(9) << i->stamina
+            << std::setw(9) << i->training_time;
+        
+        if (i->type == 'B')
+            view 
+            << std::setw(9) << i->is_base_busy;
+        
+        view << std::endl;
+    }
 
     return view;
 }

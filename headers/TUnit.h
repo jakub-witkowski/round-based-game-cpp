@@ -2,6 +2,7 @@
 #define UNIT_H
 
 #include <iostream>
+#include <vector>
 
 class TUnit
 {   
@@ -10,6 +11,7 @@ class TUnit
         ~TUnit();
 
         friend std::ostream& operator<<(std::ostream&, TUnit*);
+        friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
 
         void set_affiliation(char);
         void set_type(char);
@@ -20,6 +22,7 @@ class TUnit
         void set_cost(unsigned int);
         void set_attack_range(unsigned int);
         void set_training_time(unsigned int);
+        void set_is_base_busy(bool);
         void update_unit_counter();
         unsigned int get_unit_count();
 
@@ -35,6 +38,7 @@ class TUnit
         unsigned int cost;
         unsigned int attack_range;
         unsigned int training_time;
+        bool is_base_busy;
 };
 
 #endif

@@ -18,6 +18,8 @@ class TRound
         TMap* get_map_ptr();
         // char get_which_player();
 
+        friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
+
     private:
         char which_player;
         std::string status_filename;

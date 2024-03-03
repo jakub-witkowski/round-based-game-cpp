@@ -27,17 +27,19 @@ TBase::TBase(char aff, TMap* m) : TUnit()
     set_cost(0);
     set_attack_range(0);
     set_training_time(0);
+    set_is_base_busy(false);
 
     update_unit_counter();
 
-    std::cout << "2-argument constructor called" << std::endl;
+    std::cout << "2-argument TBase constructor called" << std::endl;
 }
 
 TBase::TBase(char aff,
                  unsigned int x,
                  unsigned int y,
                  unsigned int id,
-                 unsigned int stm)
+                 unsigned int stm,
+                 bool b)
 {
     set_affiliation(aff);
     set_type('B');
@@ -48,10 +50,11 @@ TBase::TBase(char aff,
     set_cost(0);
     set_attack_range(0);
     set_training_time(0);
+    set_is_base_busy(b);
 
     update_unit_counter();
 
-    std::cout << "5-argument constructor called" << std::endl;
+    std::cout << "6-argument TBase constructor called" << std::endl;
 }
 
 TBase::~TBase()
