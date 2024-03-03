@@ -3,6 +3,11 @@
 #include <string>
 #include <fstream>
 
+TRound::TRound()
+{
+    std::cout << "TRound default constructor called" << std::endl;
+}
+
 TRound::TRound(char who, std::string s1, std::string s2, std::string s3)
 {
     this->which_player = who;
@@ -10,7 +15,7 @@ TRound::TRound(char who, std::string s1, std::string s2, std::string s3)
     this->status_filename = s2;
     this->orders_filename = s3;
     this->player_ptr = new TPlayer(this->which_player, 2000);
-    std::cout << "TRound constructor called" << std::endl;
+    std::cout << "4-argument TRound constructor called" << std::endl;
 }
 
 TRound::~TRound()

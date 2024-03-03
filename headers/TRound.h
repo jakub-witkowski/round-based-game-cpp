@@ -7,6 +7,7 @@
 class TRound
 {
     public:
+        TRound();
         TRound(char, std::string, std::string, std::string);
         ~TRound();
 

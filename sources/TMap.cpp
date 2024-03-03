@@ -5,6 +5,11 @@
 #include <string>
 #include <sstream>
 
+TMap::TMap()
+{
+    std::cout << "Default TMap constructor called" << std::endl;
+}
+
 /* Constructor */
 TMap::TMap(std::string f) : filename(f), map_size_x(parse_map_x()), map_size_y(parse_map_y()), map_fields(new int*[map_size_x])
 {
@@ -22,6 +27,8 @@ TMap::TMap(std::string f) : filename(f), map_size_x(parse_map_x()), map_size_y(p
               << this->map_size_x
               << ", y-dimension: "
               << this->map_size_y << std::endl;*/
+
+    std::cout << "1-argument TMap constructor called" << std::endl;
 }
 
 /* Destructor */
@@ -33,7 +40,7 @@ TMap::~TMap()
 
     delete[] map_fields;
 
-    // std::cout << "~TMap()" << std::endl;
+    std::cout << "TMap destructor called" << std::endl;
 }
 
 /* read the horizontal dimension from txt file */

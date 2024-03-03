@@ -5,7 +5,7 @@ TArcher::TArcher()
 
 }
 
-TArcher::TArcher(char aff, TMap* m)
+TArcher::TArcher(char aff, TMap* m) : TUnit()
 {
     set_affiliation(aff);
     set_type('A');
@@ -25,7 +25,7 @@ TArcher::TArcher(char aff, TMap* m)
 
     update_unit_counter();
     
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "2-argument TArcher constructor called" << std::endl;
 }
 
 TArcher::TArcher(char aff,
@@ -47,7 +47,7 @@ TArcher::TArcher(char aff,
 
     update_unit_counter();
 
-    std::cout << "5-argument constructor called" << std::endl;
+    std::cout << "6-argument TArcher constructor called" << std::endl;
 }
 
 TArcher::~TArcher()

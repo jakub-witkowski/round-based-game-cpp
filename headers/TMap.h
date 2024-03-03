@@ -8,6 +8,7 @@
 class TMap
 {
     public:
+        TMap();
         TMap(std::string);
         ~TMap();
 

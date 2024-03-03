@@ -10,7 +10,7 @@ TKnight::TKnight(char aff, TMap* m)
     set_affiliation(aff);
     set_type('K');
 
-    /* determin coordinates */
+    /* determine coordinates */
     if (aff == 'P')
         set_coordinates(0, 0);
     else if (aff == 'E')
@@ -25,7 +25,7 @@ TKnight::TKnight(char aff, TMap* m)
 
     update_unit_counter();
 
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "2-argument TKnight constructor called" << std::endl;
 }
 
 TKnight::TKnight(char aff,
@@ -47,7 +47,7 @@ TKnight::TKnight(char aff,
 
     update_unit_counter();
 
-    std::cout << "5-argument constructor called" << std::endl;
+    std::cout << "6-argument TKnight constructor called" << std::endl;
 }
 
 TKnight::~TKnight()
