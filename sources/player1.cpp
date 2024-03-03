@@ -5,9 +5,11 @@
 #include "../headers/TMap.h"
 #include "../headers/TPikeman.h"
 #include "../headers/TPlayer.h"
+#include "../headers/TRam.h"
 #include "../headers/TRound.h"
 #include "../headers/TSwordsman.h"
 #include "../headers/TUnit.h"
+#include "../headers/TWorker.h"
 
 #include "../headers/functions.h"
 
