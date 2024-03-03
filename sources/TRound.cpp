@@ -14,7 +14,7 @@ TRound::TRound(char who, std::string s1, std::string s2, std::string s3)
     this->map_ptr = new TMap(s1);
     this->status_filename = s2;
     this->orders_filename = s3;
-    this->player_ptr = new TPlayer(this->which_player, 2000);
+    this->player_ptr = new TPlayer(this->which_player, 2000, this->map_ptr);
     std::cout << "4-argument TRound constructor called" << std::endl;
 }
 
@@ -44,11 +44,11 @@ void TRound::read_status()
         }
         else if (space_count == 6)
         {
-            this->player_ptr->add_base(line);
+            this->player_ptr->add_base(line, this->player_ptr->get_map_ptr());
         }
         else if (space_count == 5)
         {
-            this->player_ptr->add_unit(line);
+            this->player_ptr->add_unit(line, this->player_ptr->get_map_ptr());
         }
 
         space_count = 0;

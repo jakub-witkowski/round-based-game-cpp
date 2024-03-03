@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "TUnit.h"
+#include "TMap.h"
 #include <vector>
 #include <iostream>
 
@@ -9,7 +10,7 @@ class TPlayer
 {
     public:
         TPlayer();
-        TPlayer(char, long);
+        TPlayer(char, long, TMap*);
         ~TPlayer();
 
         std::vector<TUnit*> units{};
@@ -18,8 +19,9 @@ class TPlayer
         friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
 
         void set_gold(long);
-        void add_base(std::string);
-        void add_unit(std::string);
+        void add_base(std::string, TMap*);
+        void add_unit(std::string, TMap*);
+        TMap* get_map_ptr();
 
     void order_training(char);
     void move_units();
@@ -28,6 +30,7 @@ class TPlayer
     private:
         char identity;
         long gold{2000};
+        TMap* map_ptr{nullptr};
 };
 
 
