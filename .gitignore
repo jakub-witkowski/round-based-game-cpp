@@ -5,13 +5,13 @@
 /build/player
 
 #not ready
-/headers/TBase.h
+#/headers/TBase.h
 /headers/TCatapult.h
 /headers/TPikeman.h
 /headers/TRam.h
 #/headers/TSwordsman.h
 /headers/TWorker.h
-/sources/TBase.cpp
+#/sources/TBase.cpp
 /sources/TCatapult.cpp
 /sources/TPikeman.cpp
 /sources/TRam.cpp
