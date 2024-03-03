@@ -18,5 +18,5 @@
 #/sources/TSwordsman.cpp
 /sources/TWorker.cpp
 
-#exec
-/build/player
+### exec ###
+**/build/player**

@@ -25,16 +25,18 @@ int main(int argc, char** argv)
         /* A round object is created and initialized */
         std::unique_ptr<TRound> round(new TRound('P', argv[1], argv[2], argv[3]));
         
-        TArcher* u = new TArcher('P', round->get_map_ptr());
-        TArcher* u1 = new TArcher('E', round->get_map_ptr());
+        TUnit* u = new TArcher('P', round->get_map_ptr());
+        TUnit* u1 = new TKnight('E', round->get_map_ptr());
+        TUnit* u2 = new TSwordsman('P', round->get_map_ptr());
 
         // std::cout << round->get_player_ptr();
         std::cout << u;
-
         std::cout << u1;
+        std::cout << u2;
 
         delete u;
         delete u1;
+        delete u2;
     }
     
     return 0;
