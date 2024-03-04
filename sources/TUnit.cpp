@@ -56,7 +56,7 @@ void TUnit::set_training_time(unsigned int trt)
     this->training_time = trt;
 }
 
-void TUnit::set_is_base_busy(bool b)
+void TUnit::set_is_base_busy(char b)
 {
     this->is_base_busy = b;
 }

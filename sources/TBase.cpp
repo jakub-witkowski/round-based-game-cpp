@@ -27,7 +27,7 @@ TBase::TBase(char aff, TMap* m) : TUnit()
     set_cost(0);
     set_attack_range(0);
     set_training_time(0);
-    set_is_base_busy(false);
+    set_is_base_busy('0');
 
     update_unit_counter();
 
@@ -39,7 +39,7 @@ TBase::TBase(char aff,
                  unsigned int y,
                  unsigned int id,
                  unsigned int stm,
-                 bool b)
+                 char b)
 {
     set_affiliation(aff);
     set_type('B');

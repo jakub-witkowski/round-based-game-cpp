@@ -44,28 +44,36 @@ void TPlayer::set_gold(long g)
 
 void TPlayer::add_base(std::string line, TMap* m)
 {
+    // std::string line = l;
     size_t space_pos[6]{0,0,0,0,0,0};
     int pos = 0;
 
-    char aff;
-    unsigned int id;
-    unsigned int x;
-    unsigned int y;
-    unsigned int stamina;
-    char busy;
+    char aff{};
+    unsigned int id{};
+    unsigned int x{};
+    unsigned int y{};
+    unsigned int stamina{};
+    char busy{};
 
     for (size_t i = 0; i < line.size(); i++)
     {    
-        while (pos < 6)
+        if (line.at(i) == ' ')
         {
-            if (line[i] == ' ')
-                space_pos[pos] = i;
-
+            space_pos[pos] = i;
             pos++;
         }
     }
 
-    this->units.push_back(new TUnit()); // modify 
+    pos = 0;
+
+    aff = line[0];
+    id = stoi(line.substr(space_pos[1], space_pos[2]));
+    x = stoi(line.substr(space_pos[2], space_pos[3]));
+    y = stoi(line.substr(space_pos[3], space_pos[4]));
+    stamina = stoi(line.substr(space_pos[4], space_pos[5]));
+    busy = line[line.size()];
+
+    this->units.push_back(new TBase(aff, x, y, id, stamina, busy)); 
 }
 
 void TPlayer::add_unit(std::string line, TMap* m)

@@ -16,7 +16,7 @@ class TBase : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                bool);
+                char);
 
         ~TBase();
 };
