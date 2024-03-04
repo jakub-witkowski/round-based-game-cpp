@@ -15,8 +15,8 @@ class TCatapult : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                unsigned int,
                 unsigned int);
+                // unsigned int);
                 
         ~TCatapult();
 };

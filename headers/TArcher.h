@@ -15,8 +15,8 @@ class TArcher : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                unsigned int,
                 unsigned int);
+                // unsigned int);
                 
         ~TArcher();
 };

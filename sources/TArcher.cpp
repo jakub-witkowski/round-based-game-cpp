@@ -32,8 +32,8 @@ TArcher::TArcher(char aff,
                  unsigned int x,
                  unsigned int y,
                  unsigned int id,
-                 unsigned int stm,
-                 unsigned int trt)
+                 unsigned int stm)
+                //  unsigned int trt)
 {
     set_affiliation(aff);
     set_type('A');
@@ -43,7 +43,7 @@ TArcher::TArcher(char aff,
     set_speed(2);
     set_cost(250);
     set_attack_range(5);
-    set_training_time(trt);
+    set_training_time(3);
 
     update_unit_counter();
 

@@ -15,8 +15,8 @@ class TSwordsman : public TUnit
                    unsigned int,
                    unsigned int,
                    unsigned int,
-                   unsigned int,
                    unsigned int);
+                //    unsigned int);
                 
         ~TSwordsman();
 };

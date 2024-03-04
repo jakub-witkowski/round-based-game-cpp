@@ -15,8 +15,8 @@ class TRam : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                unsigned int,
                 unsigned int);
+                // unsigned int);
                 
         ~TRam();
 };

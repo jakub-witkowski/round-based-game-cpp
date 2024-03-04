@@ -1,8 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "TArcher.h"
 #include "TBase.h"
+#include "TCatapult.h"
+#include "TKnight.h"
+#include "TPikeman.h"
+#include "TRam.h"
+#include "TSwordsman.h"
 #include "TUnit.h"
+#include "TWorker.h"
 #include "TMap.h"
 #include <vector>
 #include <iostream>

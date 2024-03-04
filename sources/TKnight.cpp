@@ -32,8 +32,8 @@ TKnight::TKnight(char aff,
                  unsigned int x,
                  unsigned int y,
                  unsigned int id,
-                 unsigned int stm,
-                 unsigned int trt)
+                 unsigned int stm)
+                //  unsigned int trt)
 {
     set_affiliation(aff);
     set_type('K');
@@ -43,7 +43,7 @@ TKnight::TKnight(char aff,
     set_speed(5);
     set_cost(400);
     set_attack_range(1);
-    set_training_time(trt);
+    set_training_time(5);
 
     update_unit_counter();
 

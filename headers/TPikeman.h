@@ -15,8 +15,8 @@ class TPikeman : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                unsigned int,
                 unsigned int);
+                // unsigned int);
                 
         ~TPikeman();
 };

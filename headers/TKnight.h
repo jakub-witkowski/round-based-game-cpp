@@ -15,8 +15,8 @@ class TKnight : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                unsigned int,
                 unsigned int);
+                // unsigned int);
 
         ~TKnight();
 };

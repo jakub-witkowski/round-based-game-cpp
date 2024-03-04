@@ -32,8 +32,8 @@ TCatapult::TCatapult(char aff,
                  unsigned int x,
                  unsigned int y,
                  unsigned int id,
-                 unsigned int stm,
-                 unsigned int trt)
+                 unsigned int stm)
+                //  unsigned int trt)
 {
     set_affiliation(aff);
     set_type('C');

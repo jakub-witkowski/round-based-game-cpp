@@ -15,8 +15,8 @@ class TWorker : public TUnit
                 unsigned int,
                 unsigned int,
                 unsigned int,
-                unsigned int,
                 unsigned int);
+                // unsigned int);
                 
         ~TWorker();
 };

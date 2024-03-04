@@ -27,24 +27,12 @@ int main(int argc, char** argv)
         std::cout << "No order filename given!" << std::endl;
     else
     {
-        /* A round object is created and initialized */
+        /* A TRound object is created and initialized */
         std::unique_ptr<TRound> round(new TRound('P', argv[1], argv[2], argv[3]));
         
         round->read_status();
         std::cout << round->get_player_ptr();
         std::cout << round->get_player_ptr()->units;
-
-        /*TUnit* u = new TArcher('P', round->get_map_ptr());
-        TUnit* u1 = new TKnight('E', round->get_map_ptr());
-        TUnit* u2 = new TSwordsman('P', round->get_map_ptr());
-
-        std::cout << u;
-        std::cout << u1;
-        std::cout << u2;
-
-        delete u;
-        delete u1;
-        delete u2;*/
     }
     
     return 0;
