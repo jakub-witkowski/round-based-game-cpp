@@ -11,6 +11,8 @@
 #include "TUnit.h"
 #include "TWorker.h"
 #include "TMap.h"
+
+#include <random>
 #include <vector>
 #include <iostream>
 
@@ -31,9 +33,10 @@ class TPlayer
         void add_unit(std::string, TMap*);
         TMap* get_map_ptr();
 
-    void order_training(char);
-    void move_units();
-    void attack_enemy();
+        int cast_dice(int, int);
+        void order_training();
+        void move_units();
+        void attack_enemy();
 
     private:
         char identity;

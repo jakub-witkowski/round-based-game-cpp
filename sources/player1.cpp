@@ -31,8 +31,11 @@ int main(int argc, char** argv)
         std::unique_ptr<TRound> round(new TRound('P', argv[1], argv[2], argv[3]));
         
         round->read_status();
-        std::cout << round->get_player_ptr();
+
+        round->get_player_ptr()->order_training();
+
         std::cout << round->get_player_ptr()->units;
+        std::cout << round->get_player_ptr();
     }
     
     return 0;
