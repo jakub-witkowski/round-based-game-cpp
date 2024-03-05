@@ -47,7 +47,8 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
         << " Id:"
         << std::setw(9) << "Aff"
         << std::setw(9) << "Type"
-        << std::setw(9) << "X, Y"
+        << std::setw(9) << "X"
+        << std::setw(9) << "Y"
         << std::setw(9) << "St"
         << std::setw(9) << "Time"
         << std::setw(9) << "Busy"
@@ -59,7 +60,8 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
             << " " << i->id
             << std::setw(9) << i->affiliation
             << std::setw(9) << i->type
-            << std::setw(3) << i->coordinates.first << ", " << i->coordinates.second
+            << std::setw(9) << i->coordinates.first
+            << std::setw(9) << i->coordinates.second
             << std::setw(9) << i->stamina
             << std::setw(9) << i->training_time;
         
