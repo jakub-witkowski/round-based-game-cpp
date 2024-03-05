@@ -19,6 +19,8 @@ class TMap
         unsigned int get_map_size_x();
         unsigned int get_map_size_y();
         
+        unsigned int get_map_field_info(unsigned int, unsigned int);
+
         friend std::ostream& operator<<(std::ostream&, TMap*);
 
 

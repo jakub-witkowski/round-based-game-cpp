@@ -39,6 +39,8 @@ class TPlayer
         void order_training();
         void update_gold(int);
         void move_units();
+        void order_move(TUnit*);
+        bool is_map_field_occupied(char, unsigned int, unsigned int);
         void attack_enemy();
 
     private:

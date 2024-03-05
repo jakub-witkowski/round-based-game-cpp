@@ -61,6 +61,17 @@ void TUnit::set_is_base_busy(char b)
     this->is_base_busy = b;
 }
 
+void TUnit::set_map_ptr(TMap* m)
+{
+    this->map_ptr = m;
+}
+
+void TUnit::update_remaining_movement_points(int m)
+{
+    unsigned int new_speed = this->get_remaining_movement_points() - m;
+    this->set_speed(new_speed);
+}
+
 void TUnit::update_unit_counter()
 {
     unit_counter++;
@@ -91,7 +102,22 @@ unsigned int TUnit::get_remaining_movement_points()
     return this->speed;
 }
 
-void TUnit::order_move()
+char TUnit::get_affiliation()
 {
-    
+    return this->affiliation;
+}
+
+std::pair<unsigned int, unsigned int> TUnit::get_coordinates()
+{
+    return this->coordinates;
+}
+
+TMap* TUnit::get_map_ptr()
+{
+    return this->map_ptr;
+}
+
+unsigned int TUnit::get_id()
+{
+    return this->id;
 }

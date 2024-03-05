@@ -94,3 +94,8 @@ unsigned int TMap::get_map_size_y()
 {
     return this->map_size_y;
 }
+
+unsigned int TMap::get_map_field_info(unsigned int x, unsigned int y)
+{
+    return this->map_fields[y][x];
+}

@@ -1,6 +1,8 @@
 #ifndef UNIT_H
 #define UNIT_H
 
+#include "TMap.h"
+
 #include <iostream>
 #include <vector>
 
@@ -13,6 +15,8 @@ class TUnit
         friend std::ostream& operator<<(std::ostream&, TUnit*);
         friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
 
+        // friend int TPlayer::cast_dice(int,int);
+
         void set_affiliation(char);
         void set_type(char);
         void set_coordinates(unsigned int, unsigned int);
@@ -23,13 +27,20 @@ class TUnit
         void set_attack_range(unsigned int);
         void set_training_time(unsigned int);
         void set_is_base_busy(char);
+        void set_map_ptr(TMap*);
+
+        void update_remaining_movement_points(int);
         void update_unit_counter();
+
         unsigned int get_unit_count();
         unsigned int get_cost();
         char get_type();
         unsigned int get_training_time();
         unsigned int get_remaining_movement_points();
-        void order_move();
+        char get_affiliation();
+        std::pair<unsigned int, unsigned int> get_coordinates();
+        TMap* get_map_ptr();
+        unsigned int get_id();
 
     protected:
         inline static unsigned int unit_counter;
@@ -44,6 +55,7 @@ class TUnit
         unsigned int attack_range;
         unsigned int training_time;
         char is_base_busy;
+        TMap* map_ptr;
 };
 
 #endif

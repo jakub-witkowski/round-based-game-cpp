@@ -279,10 +279,193 @@ void TPlayer::move_units()
             continue;
         if (el->get_training_time() == 0 && el->get_remaining_movement_points() > 0)
         {
-            el->order_move();
+            order_move(el);
+        }
+    }
+}
+
+void TPlayer::order_move(TUnit* u)
+{
+    /* how many fields a unit is ordered to move in x and y direction */
+    int x_axis_move{};
+    int y_axis_move{};
+
+    int row_number{}; // controls the use of the spread arrays
+    bool is_dice_cast = false; // controls the validation process: 0 = no move generated; 1 = moves for two axes generated;
+    unsigned int distance{}; // the distance the unit is attempting to cover
+    int target_x{}; // target x coordinate
+    int target_y{}; // target y coordinate
+
+    /* auxiliary arrays for determining the x vs y spread in distance */
+    const int spread1[2][2] = { {0, 1}, {1, 0} };
+    const int spread2[3][2] = { {0, 2}, {1, 1}, {2, 0} };
+    const int spread3[4][2] = { {0, 3}, {1, 2}, {2, 1}, {3, 0} };
+    const int spread4[5][2] = { {0, 4}, {1, 3}, {2, 2}, {3, 1}, {4, 0} };
+    const int spread5[6][2] = { {0, 5}, {1, 4}, {2, 3}, {3, 2}, {4, 1}, {5, 0} };
+
+    if (u->get_type() == 'K')
+    {
+        distance = cast_dice(1,5);
+        switch (distance)
+        {
+            /*case 0:
+                x_axis_move = 0;
+                y_axis_move = 0;
+                dice_cast = false;
+                break;*/
+            case 1:
+                row_number = cast_dice(0,1);
+                x_axis_move = spread1[row_number][0];
+                y_axis_move = spread1[row_number][1];
+                is_dice_cast = true;
+                break;
+            case 2:
+                row_number = cast_dice(0,2);
+                x_axis_move = spread2[row_number][0];
+                y_axis_move = spread2[row_number][1];
+                is_dice_cast = true;
+                break;
+            case 3:
+                row_number = cast_dice(0,3);
+                x_axis_move = spread3[row_number][0];
+                y_axis_move = spread3[row_number][1];
+                is_dice_cast = true;
+                break;
+            case 4:
+                row_number = cast_dice(0,4);
+                x_axis_move = spread4[row_number][0];
+                y_axis_move = spread4[row_number][1];
+                is_dice_cast = true;
+                break;
+            case 5:
+                row_number = cast_dice(0,5);
+                x_axis_move = spread5[row_number][0];
+                y_axis_move = spread5[row_number][1];
+                is_dice_cast = true;
+                break;
+        } 
+    }
+    else if (u->get_type() != 'K' && u->get_type() != 'B')
+    {
+        distance = cast_dice(1,2);
+        //distance = r(0,2);
+        switch (distance)
+        {
+            /*case 0:
+                x_axis_move = 0;
+                y_axis_move = 0;
+                dice_cast = false;
+                break;*/
+            case 1:
+                row_number = cast_dice(0,1);
+                x_axis_move = spread1[row_number][0];
+                y_axis_move = spread1[row_number][1];
+                is_dice_cast = true;
+                break;
+            case 2:
+                row_number = cast_dice(0,2);
+                x_axis_move = spread2[row_number][0];
+                y_axis_move = spread2[row_number][1];
+                is_dice_cast = true;
+                break;
+        }
+    }
+
+        /* Validating target coordinates */
+        if (is_dice_cast == true)
+        {
+            /* validating the draws against the map */
+            if (u->get_affiliation() == 'P')
+                if (((u->get_coordinates().first + x_axis_move) >= u->get_map_ptr()->get_map_size_x()) || ((u->get_coordinates().second + y_axis_move) >= u->get_map_ptr()->get_map_size_y()))
+                    is_dice_cast = false; // cannot go outside the map
+            if (u->get_affiliation() == 'E')
+                if (((u->get_coordinates().first - x_axis_move) < 0) || ((u->get_coordinates().second - y_axis_move) < 0))
+                    is_dice_cast = false; // cannot go outside the map
         }
 
+        if (is_dice_cast == true)
+        {
+            if (distance > u->get_remaining_movement_points())
+                is_dice_cast = false; // cannot exceed remaining movement
+        }
+
+        if (is_dice_cast == true)
+        {
+            if (u->get_affiliation() == 'P')
+            {
+                if (u->get_map_ptr()->get_map_field_info(u->get_coordinates().first + x_axis_move, u->get_coordinates().second + y_axis_move) == 9)
+                    is_dice_cast = false; // cannot go on natural obstacles
+            }
+            if (u->get_affiliation() == 'E')
+            {
+                if (u->get_map_ptr()->get_map_field_info(u->get_coordinates().first - x_axis_move, u->get_coordinates().second - y_axis_move) == 9)
+                    is_dice_cast = false; // cannot go on natural obstacles
+            }
+        }
+
+        if (is_dice_cast == true)
+        {
+            if (is_map_field_occupied(u->get_affiliation(), u->get_coordinates().first, u->get_coordinates().second) == true)
+                is_dice_cast = false;
+            else
+                is_dice_cast = true;
+        }
+
+        if (is_dice_cast == true)
+        {
+            if (u->get_affiliation() == 'P')
+            {
+                target_x = u->get_coordinates().first + x_axis_move;
+                target_y = u->get_coordinates().second + y_axis_move;
+            }
+            else if (u->get_affiliation() == 'E')
+            {
+                target_x = u->get_coordinates().first - x_axis_move;
+                target_y = u->get_coordinates().second - y_axis_move;
+            }
+
+            u->update_remaining_movement_points(distance);
+            
+            std::cout
+            << "Ordering unit "
+            << u->get_id()
+            << " to move to x: "
+            << target_x
+            << ", y: "
+            << target_y
+            << ". "
+            << std::endl;
+    
+            u->set_coordinates(target_x, target_y);
+        }
+}
+
+bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
+{
+    int number_of_units_at_the_field{0};
+    char opponent_affiliation;
+
+    if (aff == 'P')
+        opponent_affiliation = 'E';
+    else if (aff == 'E')
+        opponent_affiliation = 'P';
+
+    for (size_t i = 0; i < this->units.size(); i++)
+    {
+        if (this->units[i]->get_affiliation() == opponent_affiliation)
+        {
+            if (this->units[i]->get_coordinates().first == x && this->units[i]->get_coordinates().second == y)
+            number_of_units_at_the_field++;
+        }
     }
+
+    if (number_of_units_at_the_field > 0)
+    {
+        std::cout << "Cannot move to enemy-held territory." << std::endl;
+        return true;
+    }
+    else
+        return false;
 }
 
 void TPlayer::attack_enemy()
