@@ -12,7 +12,7 @@ class TRound
         ~TRound();
 
         void read_status();
-        void write_orders();
+        // void write_orders();
 
         TPlayer* get_player_ptr();
         TMap* get_map_ptr();

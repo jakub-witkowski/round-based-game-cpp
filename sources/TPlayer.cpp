@@ -1,5 +1,7 @@
 #include "../headers/TPlayer.h"
 
+#include <fstream>
+
 TPlayer::TPlayer()
 {
     std::cout << "TPlayer default constructor called" << std::endl;
@@ -32,7 +34,7 @@ int TPlayer::cast_dice(int min, int max)
     return dice_roll;
 }
 
-void TPlayer::order_training()
+void TPlayer::order_training(std::string orders)
 {
     bool are_funds_sufficient{false};
     int drawing_result{};
@@ -254,12 +256,25 @@ void TPlayer::order_training()
 
     if (choice_made == true)
 	{
-        this->update_gold(units[units.size()-1]->get_cost());
-		std::cout
-		<< std::endl
-		<< prefix
-		<< phrase << ". "
-		<< std::endl;
+        std::ofstream output(orders);
+        std::string training_output;
+        char suffix;
+
+        if (output.is_open())
+        {
+            if (this->identity == 'P')
+                training_output.append("0 B ");
+            else
+                training_output.append("1 B ");
+
+            suffix = this->units[units.size() - 1]->get_type();
+            training_output += suffix;
+
+            output << training_output;
+        }
+
+        this->update_gold(units[units.size() - 1]->get_cost());
+		std::cout << prefix	<< phrase << ". " << std::endl;
 	}
 
 }
@@ -273,6 +288,8 @@ void TPlayer::move_units()
 {
     for (auto el : this->units)
     {
+        if (el->get_affiliation() != this->identity)
+            continue;
         if (el->get_type() == 'B')
             continue;
         if (el->get_training_time() > 0)
@@ -376,7 +393,7 @@ void TPlayer::order_move(TUnit* u)
         {
             /* validating the draws against the map */
             if (u->get_affiliation() == 'P')
-                if (((u->get_coordinates().first + x_axis_move) >= u->get_map_ptr()->get_map_size_x()) || ((u->get_coordinates().second + y_axis_move) >= u->get_map_ptr()->get_map_size_y()))
+                if (((u->get_coordinates().first + x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second + y_axis_move) >= this->map_ptr->get_map_size_y()))
                     is_dice_cast = false; // cannot go outside the map
             if (u->get_affiliation() == 'E')
                 if (((u->get_coordinates().first - x_axis_move) < 0) || ((u->get_coordinates().second - y_axis_move) < 0))
@@ -393,12 +410,12 @@ void TPlayer::order_move(TUnit* u)
         {
             if (u->get_affiliation() == 'P')
             {
-                if (u->get_map_ptr()->get_map_field_info(u->get_coordinates().first + x_axis_move, u->get_coordinates().second + y_axis_move) == 9)
+                if (this->map_ptr->get_map_field_info(u->get_coordinates().first + x_axis_move, u->get_coordinates().second + y_axis_move) == 9)
                     is_dice_cast = false; // cannot go on natural obstacles
             }
             if (u->get_affiliation() == 'E')
             {
-                if (u->get_map_ptr()->get_map_field_info(u->get_coordinates().first - x_axis_move, u->get_coordinates().second - y_axis_move) == 9)
+                if (this->map_ptr->get_map_field_info(u->get_coordinates().first - x_axis_move, u->get_coordinates().second - y_axis_move) == 9)
                     is_dice_cast = false; // cannot go on natural obstacles
             }
         }

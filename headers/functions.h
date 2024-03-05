@@ -58,7 +58,7 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
     {
         view
             << " " << i->id
-            << std::setw(9) << i->affiliation
+            << std::setw(11) << i->affiliation
             << std::setw(9) << i->type
             << std::setw(9) << i->coordinates.first
             << std::setw(9) << i->coordinates.second

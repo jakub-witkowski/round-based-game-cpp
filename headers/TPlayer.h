@@ -36,7 +36,7 @@ class TPlayer
         // TPlayer* get_player_ptr();
 
         int cast_dice(int, int);
-        void order_training();
+        void order_training(std::string);
         void update_gold(int);
         void move_units();
         void order_move(TUnit*);

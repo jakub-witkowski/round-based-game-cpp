@@ -23,6 +23,7 @@ TRam::TRam(char aff, TMap* m) : TUnit()
     set_attack_range(1);
     set_training_time(4);
 
+    // set_map_ptr(m);
     update_unit_counter();
 
     std::cout << "2-argument TRam constructor called" << std::endl;
@@ -43,7 +44,7 @@ TRam::TRam(char aff,
     set_speed(2);
     set_cost(500);
     set_attack_range(1);
-    set_training_time(4);
+    set_training_time(0);
 
     update_unit_counter();
 

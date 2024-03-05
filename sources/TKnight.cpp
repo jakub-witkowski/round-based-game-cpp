@@ -23,6 +23,7 @@ TKnight::TKnight(char aff, TMap* m)
     set_attack_range(1);
     set_training_time(5);
 
+    // set_map_ptr(m);
     update_unit_counter();
 
     std::cout << "2-argument TKnight constructor called" << std::endl;
@@ -43,7 +44,7 @@ TKnight::TKnight(char aff,
     set_speed(5);
     set_cost(400);
     set_attack_range(1);
-    set_training_time(5);
+    set_training_time(0);
 
     update_unit_counter();
 

@@ -55,10 +55,10 @@ void TRound::read_status()
     }
 }
 
-void TRound::write_orders()
-{
+// void TRound::write_orders()
+// {
     
-}
+// }
 
 TPlayer* TRound::get_player_ptr()
 {

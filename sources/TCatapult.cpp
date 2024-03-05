@@ -23,6 +23,7 @@ TCatapult::TCatapult(char aff, TMap* m) : TUnit()
     set_attack_range(7);
     set_training_time(6);
 
+    // set_map_ptr(m);
     update_unit_counter();
 
     std::cout << "2-argument TCatapult constructor called" << std::endl;
@@ -43,7 +44,7 @@ TCatapult::TCatapult(char aff,
     set_speed(2);
     set_cost(800);
     set_attack_range(7);
-    set_training_time(6);
+    set_training_time(0);
 
     update_unit_counter();
 

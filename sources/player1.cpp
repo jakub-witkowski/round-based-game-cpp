@@ -20,9 +20,10 @@ int main(int argc, char** argv)
         std::unique_ptr<TRound> round(new TRound('P', argv[1], argv[2], argv[3]));
         
         round->read_status();
-        round->get_player_ptr()->order_training();
+        round->get_player_ptr()->order_training(argv[3]);
         round->get_player_ptr()->move_units();
-        std::cout << round->get_player_ptr()->units;
+        // std::cout << round->get_player_ptr()->units;
+        // std::cout << round->get_player_ptr()->get_map_ptr();
         // std::cout << round->get_player_ptr();
     }
     
