@@ -271,7 +271,18 @@ void TPlayer::update_gold(int cost)
 
 void TPlayer::move_units()
 {
+    for (auto el : this->units)
+    {
+        if (el->get_type() == 'B')
+            continue;
+        if (el->get_training_time() > 0)
+            continue;
+        if (el->get_training_time() == 0 && el->get_remaining_movement_points() > 0)
+        {
+            el->order_move();
+        }
 
+    }
 }
 
 void TPlayer::attack_enemy()

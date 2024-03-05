@@ -25,7 +25,11 @@ class TUnit
         void set_is_base_busy(char);
         void update_unit_counter();
         unsigned int get_unit_count();
-        int get_cost();
+        unsigned int get_cost();
+        char get_type();
+        unsigned int get_training_time();
+        unsigned int get_remaining_movement_points();
+        void order_move();
 
     protected:
         inline static unsigned int unit_counter;

@@ -71,7 +71,27 @@ unsigned int TUnit::get_unit_count()
     return unit_counter;
 }
 
-int TUnit::get_cost()
+unsigned int TUnit::get_cost()
 {
     return this->cost;
+}
+
+char TUnit::get_type()
+{
+    return this->type;
+}
+
+unsigned int TUnit::get_training_time()
+{
+    return this->training_time;
+}
+
+unsigned int TUnit::get_remaining_movement_points()
+{
+    return this->speed;
+}
+
+void TUnit::order_move()
+{
+    
 }

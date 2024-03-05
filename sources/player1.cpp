@@ -1,16 +1,4 @@
-// #include "../headers/TMap.h"
 #include "../headers/TRound.h"
-// #include "../headers/TPlayer.h"
-// #include "../headers/TUnit.h"
-
-// #include "../headers/TArcher.h"
-// #include "../headers/TBase.h"
-// #include "../headers/TCatapult.h"
-// #include "../headers/TKnight.h"
-// #include "../headers/TPikeman.h"
-// #include "../headers/TRam.h"
-// #include "../headers/TSwordsman.h"
-// #include "../headers/TWorker.h"
 
 #include "../headers/functions.h"
 
@@ -32,11 +20,10 @@ int main(int argc, char** argv)
         std::unique_ptr<TRound> round(new TRound('P', argv[1], argv[2], argv[3]));
         
         round->read_status();
-
         round->get_player_ptr()->order_training();
 
-        std::cout << round->get_player_ptr()->units;
-        std::cout << round->get_player_ptr();
+        // std::cout << round->get_player_ptr()->units;
+        // std::cout << round->get_player_ptr();
     }
     
     return 0;
