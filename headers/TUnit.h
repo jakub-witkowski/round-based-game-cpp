@@ -25,6 +25,7 @@ class TUnit
         void set_is_base_busy(char);
         void update_unit_counter();
         unsigned int get_unit_count();
+        int get_cost();
 
     protected:
         inline static unsigned int unit_counter;

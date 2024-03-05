@@ -19,6 +19,8 @@ class TWorker : public TUnit
                 // unsigned int);
                 
         ~TWorker();
+
+        int get_cost();
 };
 
 #endif

@@ -70,3 +70,8 @@ unsigned int TUnit::get_unit_count()
 {
     return unit_counter;
 }
+
+int TUnit::get_cost()
+{
+    return this->cost;
+}

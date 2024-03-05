@@ -54,3 +54,8 @@ TSwordsman::~TSwordsman()
 {
 
 }
+
+int TSwordsman::get_cost()
+{
+    return this->cost;
+}

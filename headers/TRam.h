@@ -19,6 +19,8 @@ class TRam : public TUnit
                 // unsigned int);
                 
         ~TRam();
+
+        int get_cost();
 };
 
 #endif

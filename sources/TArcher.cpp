@@ -23,6 +23,7 @@ TArcher::TArcher(char aff, TMap* m) : TUnit()
     set_attack_range(5);
     set_training_time(3);
 
+    // p->update_gold(this->cost);
     update_unit_counter();
     
     std::cout << "2-argument TArcher constructor called" << std::endl;
@@ -53,4 +54,9 @@ TArcher::TArcher(char aff,
 TArcher::~TArcher()
 {
 
+}
+
+int TArcher::get_cost()
+{
+    return this->cost;
 }

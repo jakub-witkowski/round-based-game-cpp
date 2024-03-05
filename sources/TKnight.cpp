@@ -54,3 +54,8 @@ TKnight::~TKnight()
 {
 
 }
+
+int TKnight::get_cost()
+{
+    return this->cost;
+}

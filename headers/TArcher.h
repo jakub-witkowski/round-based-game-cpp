@@ -19,6 +19,8 @@ class TArcher : public TUnit
                 // unsigned int);
                 
         ~TArcher();
+
+        int get_cost();
 };
 
 #endif

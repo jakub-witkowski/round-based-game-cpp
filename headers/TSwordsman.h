@@ -19,6 +19,8 @@ class TSwordsman : public TUnit
                 //    unsigned int);
                 
         ~TSwordsman();
+
+        int get_cost();
 };
 
 #endif

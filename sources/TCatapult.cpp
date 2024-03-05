@@ -54,3 +54,8 @@ TCatapult::~TCatapult()
 {
 
 }
+
+int TCatapult::get_cost()
+{
+    return this->cost;
+}

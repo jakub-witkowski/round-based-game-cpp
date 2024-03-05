@@ -49,7 +49,6 @@ void TPlayer::order_training()
     if (are_funds_sufficient == true)
     {
         drawing_result = TPlayer::cast_dice(0,100);
-        // std::cout << "Dice cast: " << drawing_result << std::endl;
 
         if (drawing_result < 50)
             std::cout << "No training ordered." << std::endl;
@@ -59,6 +58,7 @@ void TPlayer::order_training()
             {
                 phrase = "training a worker";
                 this->units.push_back(new TWorker(this->identity, this->map_ptr));
+                this->set_base_busy(this->identity, 'W');
                 choice_made = true;
             }
             else if ((this->gold >= 100) && (this->gold < 250))
@@ -68,12 +68,14 @@ void TPlayer::order_training()
                 {
                     phrase = "training a worker";
                     units.push_back(new TWorker(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'W');
                     choice_made = true;
                 }
                 else if (drawing_result > 50)
                 {
                     phrase = "training a pikeman";
                     units.push_back(new TPikeman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'P');
                     choice_made = true;
                 }
             }
@@ -84,24 +86,28 @@ void TPlayer::order_training()
                 {
                     phrase = "training a worker";
                     units.push_back(new TWorker(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'W');
                     choice_made = true;
                 }
                 else if (drawing_result > 25 && drawing_result <= 50)
                 {
                     phrase = "training a pikeman";
                     units.push_back(new TPikeman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'P');
                     choice_made = true;
                 }
                 else if (drawing_result > 50 && drawing_result < 75)
                 {
                     phrase = "training a swordsman";
                     units.push_back(new TSwordsman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'S');
                     choice_made = true;
                 }
                 else if (drawing_result > 75 && drawing_result <= 100)
                 {
                     phrase = "training an archer";
                     units.push_back(new TArcher(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'A');
                     choice_made = true;
                 }
             }
@@ -112,30 +118,35 @@ void TPlayer::order_training()
                 {
                     phrase = "training a worker";
                     units.push_back(new TWorker(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'W');
                     choice_made = true;
                 }
                 else if (drawing_result > 20 && drawing_result <= 40)
                 {
                     phrase = "training a pikeman";
                     units.push_back(new TPikeman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'P');
                     choice_made = true;
                 }
                 else if (drawing_result > 40 && drawing_result <= 60)
                 {
                     phrase = "training a swordsman";
                     units.push_back(new TSwordsman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'S');
                     choice_made = true;
                 }
                 else if (drawing_result > 60 && drawing_result <= 80)
                 {
                     phrase = "training an archer";
                     units.push_back(new TArcher(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'A');
                     choice_made = true;
                 }
                 else if (drawing_result > 80 && drawing_result <= 100)
                 {
                     phrase = "training a knight";
                     units.push_back(new TKnight(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'K');
                     choice_made = true;
                 }
             }
@@ -146,36 +157,42 @@ void TPlayer::order_training()
                 {
                     phrase = "training a worker";
                     units.push_back(new TWorker(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'W');
                     choice_made = true;
                 }
                 else if ((3 * drawing_result) > 50 && (3 * drawing_result) <= 100)
                 {
                     phrase = "training a pikeman";
                     units.push_back(new TPikeman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'P');
                     choice_made = true;
                 }
                 else if ((3 * drawing_result) > 100 && (3 * drawing_result) <= 150)
                 {
                     phrase = "training a swordsman";
                     units.push_back(new TSwordsman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'S');
                     choice_made = true;
                 }
                 else if ((3 * drawing_result) > 150 && (3 * drawing_result) <= 200)
                 {
                     phrase = "training an archer";
                     units.push_back(new TArcher(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'A');
                     choice_made = true;
                 }
                 else if ((3 * drawing_result) > 200 && (3 * drawing_result) <= 250)
                 {
                     phrase = "training a knight";
                     units.push_back(new TKnight(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'K');
                     choice_made = true;
                 }
                 else if ((3 * drawing_result) > 250 && (3 * drawing_result) <= 300)
                 {
                     phrase = "producing a ram";
                     units.push_back(new TRam(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'R');
                     choice_made = true;
                 }
             }
@@ -186,42 +203,49 @@ void TPlayer::order_training()
                 {
                     phrase = "training a worker";
                     units.push_back(new TWorker(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'W');
                     choice_made = true;
                 }
                 else if ((drawing_result * 3.5) > 50 && (drawing_result * 3.5) <= 100)
                 {
                     phrase = "training a pikeman";
                     units.push_back(new TPikeman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'P');
                     choice_made = true;
                 }
                 else if ((drawing_result * 3.5) > 100 && (drawing_result * 3.5) <= 150)
                 {
                     phrase = "training a swordsman";
                     units.push_back(new TSwordsman(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'S');
                     choice_made = true;
                 }
                 else if ((drawing_result * 3.5) > 150 && (drawing_result * 3.5) <= 200)
                 {
                     phrase = "training an archer";
                     units.push_back(new TArcher(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'A');
                     choice_made = true;
                 }
                 else if ((drawing_result * 3.5) > 200 && (drawing_result * 3.5) <= 250)
                 {
                     phrase = "training a knight";
                     units.push_back(new TKnight(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'K');
                     choice_made = true;
                 }
                 else if ((drawing_result * 3.5) > 250 && (drawing_result * 3.5) <= 300)
                 {
                     phrase = "producing a ram";
                     units.push_back(new TRam(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'R');
                     choice_made = true;
                 }
                 else if ((drawing_result * 3.5) > 300)
                 {
                     phrase = "producing a catapult";
                     units.push_back(new TCatapult(this->identity, this->map_ptr));
+                    this->set_base_busy(this->identity, 'C');
                     choice_made = true;
                 }	
             }
@@ -230,15 +254,19 @@ void TPlayer::order_training()
 
     if (choice_made == true)
 	{
+        this->update_gold(units[units.size()-1]->get_cost());
 		std::cout
 		<< std::endl
 		<< prefix
 		<< phrase << ". "
-		<< " Units.size() = "
-		<< this->units.size()
 		<< std::endl;
 	}
 
+}
+
+void TPlayer::update_gold(int cost)
+{
+    this->gold -= cost;
 }
 
 void TPlayer::move_units()
@@ -286,7 +314,7 @@ void TPlayer::add_base(std::string line, TMap* m)
     stamina = stoi(line.substr(space_pos[4], space_pos[5]));
     busy = line[line.size() - 1];
 
-    this->units.push_back(new TBase(aff, x, y, id, stamina, busy)); 
+    this->units.push_back(new TBase(aff, x, y, id, stamina, busy));
 }
 
 void TPlayer::add_unit(std::string line, TMap* m)
@@ -350,3 +378,16 @@ TMap* TPlayer::get_map_ptr()
 {
     return this->map_ptr;
 }
+
+void TPlayer::set_base_busy(char aff, char t)
+{
+    if (aff == 'P')
+        this->units[0]->set_is_base_busy(t);
+    else if (aff == 'E')
+        this->units[1]->set_is_base_busy(t);
+}
+
+// TPlayer* TPlayer::get_player_ptr()
+// {
+//     return this->player_ptr;
+// }

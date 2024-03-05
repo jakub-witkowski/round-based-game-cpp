@@ -54,3 +54,8 @@ TWorker::~TWorker()
 {
 
 }
+
+int TWorker::get_cost()
+{
+    return this->cost;
+}

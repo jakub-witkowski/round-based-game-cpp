@@ -32,9 +32,12 @@ class TPlayer
         void add_base(std::string, TMap*);
         void add_unit(std::string, TMap*);
         TMap* get_map_ptr();
+        void set_base_busy(char, char);
+        // TPlayer* get_player_ptr();
 
         int cast_dice(int, int);
         void order_training();
+        void update_gold(int);
         void move_units();
         void attack_enemy();
 
@@ -42,6 +45,8 @@ class TPlayer
         char identity;
         long gold{2000};
         TMap* map_ptr{nullptr};
+        // TBase* base_ptr{nullptr};
+        // TPlayer* player_ptr{&*this};
 };
 
 

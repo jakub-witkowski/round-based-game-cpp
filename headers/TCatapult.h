@@ -19,6 +19,8 @@ class TCatapult : public TUnit
                 // unsigned int);
                 
         ~TCatapult();
+
+        int get_cost();
 };
 
 #endif

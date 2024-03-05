@@ -19,6 +19,8 @@ class TKnight : public TUnit
                 // unsigned int);
 
         ~TKnight();
+
+        int get_cost();
 };
 
 #endif

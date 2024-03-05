@@ -54,3 +54,8 @@ TRam::~TRam()
 {
 
 }
+
+int TRam::get_cost()
+{
+    return this->cost;
+}

@@ -19,6 +19,8 @@ class TPikeman : public TUnit
                 // unsigned int);
                 
         ~TPikeman();
+
+        int get_cost();
 };
 
 #endif

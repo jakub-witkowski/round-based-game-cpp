@@ -54,3 +54,8 @@ TPikeman::~TPikeman()
 {
 
 }
+
+int TPikeman::get_cost()
+{
+    return this->cost;
+}
