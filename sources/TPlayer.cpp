@@ -672,12 +672,12 @@ void TPlayer::write_player_file()
 
     if (this->identity == 'P')
     {
-        fname = "../Player1.txt";
+        fname = "../player1.txt";
         base_index = 0;
     }
     else if (this->identity == 'E')
     {
-        fname = "../Player2.txt";
+        fname = "../player2.txt";
         base_index = 1;
     }
 

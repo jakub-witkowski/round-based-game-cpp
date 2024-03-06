@@ -7,6 +7,7 @@
 #not ready
 /headers/TMediator.h
 /sources/TMediator.cpp
+/sources/mediator.cpp
 
 ### exec ###
 **/build/player**
