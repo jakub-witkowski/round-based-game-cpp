@@ -141,3 +141,8 @@ char TUnit::get_is_base_busy()
 {
     return this->is_base_busy;
 }
+
+unsigned int TUnit::get_stamina()
+{
+    return this->stamina;
+}

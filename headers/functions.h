@@ -99,6 +99,7 @@ void play_round(char aff, std::string s1, std::string s2, std::string s3)
     round->get_player_ptr()->move_units(s3);
     round->get_player_ptr()->attack_enemy(s3);
     round->get_player_ptr()->write_player_file();
+    round->write_status();
 }
 
 #endif

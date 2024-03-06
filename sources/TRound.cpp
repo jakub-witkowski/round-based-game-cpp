@@ -55,10 +55,51 @@ void TRound::read_status()
     }
 }
 
-// void TRound::write_orders()
-// {
-    
-// }
+void TRound::write_status()
+{
+    std::ofstream output;
+    std::remove(this->status_filename.c_str());
+    output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
+
+    std::string output_line;
+
+    if (output.is_open())
+    {
+        output_line.append(std::to_string(this->player_ptr->get_gold()));
+        output_line.append("\n");
+
+        output << output_line;
+        output_line.clear();
+
+        for (auto el : this->player_ptr->units)
+        {
+            output_line += el->get_affiliation();
+            output_line.append(" ");
+            output_line += el->get_type();
+            output_line.append(" ");
+            output_line.append(std::to_string(el->get_id()));
+            output_line.append(" ");
+            output_line.append(std::to_string(el->get_coordinates().first));
+            output_line.append(" ");
+            output_line.append(std::to_string(el->get_coordinates().second));
+            output_line.append(" ");
+            output_line.append(std::to_string(el->get_stamina()));
+
+            if (el->get_type() == 'B')
+            {
+                output_line.append(" ");
+                output_line += el->get_is_base_busy();
+            }
+
+            output_line.append("\n");
+
+            output << output_line;
+            output_line.clear();            
+        }
+    }
+
+    output.close();
+}
 
 TPlayer* TRound::get_player_ptr()
 {

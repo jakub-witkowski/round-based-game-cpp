@@ -287,6 +287,11 @@ void TPlayer::update_gold(int cost)
     this->gold -= cost;
 }
 
+long TPlayer::get_gold()
+{
+    return this->gold;
+}
+
 void TPlayer::move_units(std::string orders)
 {
     for (auto el : this->units)
