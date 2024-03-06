@@ -256,7 +256,9 @@ void TPlayer::order_training(std::string orders)
 
     if (choice_made == true)
 	{
-        std::ofstream output(orders);
+        std::remove(orders.c_str());
+        std::ofstream output;
+        output.open(orders, std::ofstream::out | std::ofstream::app);
         std::string training_output;
         char suffix;
 
@@ -269,8 +271,10 @@ void TPlayer::order_training(std::string orders)
 
             suffix = this->units[units.size() - 1]->get_type();
             training_output += suffix;
+            training_output.append("\n");
 
             output << training_output;
+            output.close();
         }
 
         this->update_gold(units[units.size() - 1]->get_cost());
@@ -284,7 +288,7 @@ void TPlayer::update_gold(int cost)
     this->gold -= cost;
 }
 
-void TPlayer::move_units()
+void TPlayer::move_units(std::string orders)
 {
     for (auto el : this->units)
     {
@@ -296,12 +300,12 @@ void TPlayer::move_units()
             continue;
         if (el->get_training_time() == 0 && el->get_remaining_movement_points() > 0)
         {
-            order_move(el);
+            order_move(el, orders);
         }
     }
 }
 
-void TPlayer::order_move(TUnit* u)
+void TPlayer::order_move(TUnit* u, std::string orders)
 {
     /* how many fields a unit is ordered to move in x and y direction */
     int x_axis_move{};
@@ -443,6 +447,20 @@ void TPlayer::order_move(TUnit* u)
 
             u->update_remaining_movement_points(distance);
             
+            std::ofstream output;
+            output.open(orders, std::ofstream::out | std::ofstream::app);
+
+            std::string move_order_output;
+            move_order_output.append(std::to_string(u->get_id()));
+            move_order_output.append(" M ");
+            move_order_output.append(std::to_string(target_x));
+            move_order_output.append(" ");
+            move_order_output.append(std::to_string(target_y));
+            move_order_output.append("\n");
+
+            output << move_order_output;
+            output.close();
+
             std::cout
             << "Ordering unit "
             << u->get_id()

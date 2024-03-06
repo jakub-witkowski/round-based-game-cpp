@@ -21,7 +21,7 @@ int main(int argc, char** argv)
         
         round->read_status();
         round->get_player_ptr()->order_training(argv[3]);
-        round->get_player_ptr()->move_units();
+        round->get_player_ptr()->move_units(argv[3]);
         // std::cout << round->get_player_ptr()->units;
         // std::cout << round->get_player_ptr()->get_map_ptr();
         // std::cout << round->get_player_ptr();

@@ -38,8 +38,8 @@ class TPlayer
         int cast_dice(int, int);
         void order_training(std::string);
         void update_gold(int);
-        void move_units();
-        void order_move(TUnit*);
+        void move_units(std::string);
+        void order_move(TUnit*, std::string);
         bool is_map_field_occupied(char, unsigned int, unsigned int);
         void attack_enemy();
 
