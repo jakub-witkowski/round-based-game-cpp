@@ -44,6 +44,7 @@ class TUnit
         unsigned int get_id();
         bool get_may_attack_enemy_units();
         unsigned int get_attack_range();
+        char get_is_base_busy();
 
     protected:
         inline static unsigned int unit_counter;

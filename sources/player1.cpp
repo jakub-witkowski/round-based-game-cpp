@@ -16,25 +16,20 @@ int main(int argc, char** argv)
         std::cout << "No order filename given!" << std::endl;
     else
     {
+        unsigned int timer{};
+
+        if (!argv[4])
+            timer = 2;
+        else
+            timer = std::stoi(argv[4]);
+
         /* orders.txt from the previous round is deleted */
         std::remove(argv[3]);
 
         std::thread thread1(play_round, 'P', argv[1], argv[2], argv[3]);
 
-        unsigned int timer{};
-
-        if (!argv[4])
-            timer = 10;
-        else
-            timer = std::stoi(argv[4]);
-
-        // std::thread thread2(timer, timer);
-
-        if(!argv[4])
-            std::this_thread::sleep_for(std::chrono::seconds(timer));
-        else
-            std::this_thread::sleep_for(std::chrono::seconds(std::stoi(argv[4])));
-
+        std::this_thread::sleep_for(std::chrono::seconds(timer));
+        
         thread1.join();
     }
     

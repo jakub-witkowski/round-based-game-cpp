@@ -43,6 +43,7 @@ class TPlayer
         bool is_map_field_occupied(char, unsigned int, unsigned int);
         void attack_enemy(std::string);
         void order_attack(TUnit*, std::string);
+        void write_player_file();
 
     private:
         char identity;

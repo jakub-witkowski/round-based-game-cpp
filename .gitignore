@@ -23,3 +23,6 @@
 
 #orders file
 orders.txt
+
+#player files
+Player*.txt

@@ -663,7 +663,40 @@ void TPlayer::set_base_busy(char aff, char t)
         this->units[1]->set_is_base_busy(t);
 }
 
-// TPlayer* TPlayer::get_player_ptr()
-// {
-//     return this->player_ptr;
-// }
+void TPlayer::write_player_file()
+{
+    std::ofstream output;
+    std::string fname;
+    std::string player_file;
+    int base_index;
+
+    if (this->identity == 'P')
+    {
+        fname = "../Player1.txt";
+        base_index = 0;
+    }
+    else if (this->identity == 'E')
+    {
+        fname = "../Player2.txt";
+        base_index = 1;
+    }
+
+    std::remove(fname.c_str());
+
+    output.open(fname, std::ofstream::out | std::ofstream::app);
+
+    if (output.is_open())
+    {
+        if (this->units[base_index]->get_is_base_busy() != '0')
+        {
+            player_file.append("T ");
+            player_file.append(std::to_string(this->units[units.size() - 1]->get_training_time() - 1));
+            player_file.append("\n");
+        }
+        
+        player_file.append(std::to_string(this->gold));
+    }
+
+    output << player_file;
+    output.close();
+}

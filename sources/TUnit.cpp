@@ -136,3 +136,8 @@ unsigned int TUnit::get_attack_range()
 {
     return this->attack_range;
 }
+
+char TUnit::get_is_base_busy()
+{
+    return this->is_base_busy;
+}
