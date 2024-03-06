@@ -256,7 +256,6 @@ void TPlayer::order_training(std::string orders)
 
     if (choice_made == true)
 	{
-        std::remove(orders.c_str());
         std::ofstream output;
         output.open(orders, std::ofstream::out | std::ofstream::app);
         std::string training_output;
@@ -474,6 +473,59 @@ void TPlayer::order_move(TUnit* u, std::string orders)
             u->set_coordinates(target_x, target_y);
         }
 }
+void TPlayer::attack_enemy(std::string orders)
+{
+    for (auto el : this->units)
+    {
+        if (el->get_affiliation() != this->identity)
+            continue;
+        if (el->get_type() == 'B')
+            continue;
+        if (el->get_training_time() > 0)
+            continue;
+        if ((el->get_training_time() == 0) && (el->get_remaining_movement_points() > 0) && (el->get_may_attack_enemy_units() == true))
+        {
+            order_attack(el, orders);
+        }
+    }
+}
+
+void TPlayer::order_attack(TUnit* u, std::string orders)
+{
+    for (auto el : this->units)
+    {
+        unsigned int distance = abs(u->get_coordinates().first - el->get_coordinates().first)
+                    + abs(u->get_coordinates().second - el->get_coordinates().second);
+        if (el->get_affiliation() == u->get_affiliation())
+            continue;
+        if (el->get_affiliation() != u->get_affiliation())
+        {
+            if ((distance <= u->get_attack_range() - 1) && (u->get_may_attack_enemy_units() == true))
+            {
+                u->set_may_attack_enemy_units(0);
+                u->set_speed(0);
+
+                std::cout << "Ordering unit " << u->get_id() << " to attack the opponent unit " << el->get_id() << ". " << std::endl;
+            
+                std::ofstream output;
+                output.open(orders, std::ofstream::out | std::ofstream::app);
+
+                std::string attack_order_output;
+                attack_order_output.append(std::to_string(u->get_id()));
+                attack_order_output.append(" A ");
+                attack_order_output.append(std::to_string(el->get_id()));
+                attack_order_output.append("\n");
+
+                if (output.is_open())
+                {
+                    output << attack_order_output;
+                }
+
+                output.close();
+            }
+        }
+    }       
+}
 
 bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
 {
@@ -501,11 +553,6 @@ bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
     }
     else
         return false;
-}
-
-void TPlayer::attack_enemy()
-{
-
 }
 
 void TPlayer::set_gold(long g)

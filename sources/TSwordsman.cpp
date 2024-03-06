@@ -45,6 +45,7 @@ TSwordsman::TSwordsman(char aff,
     set_cost(250);
     set_attack_range(1);
     set_training_time(0);
+    set_may_attack_enemy_units(true);
 
     update_unit_counter();
 

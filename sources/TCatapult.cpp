@@ -45,6 +45,7 @@ TCatapult::TCatapult(char aff,
     set_cost(800);
     set_attack_range(7);
     set_training_time(0);
+    set_may_attack_enemy_units(true);
 
     update_unit_counter();
 

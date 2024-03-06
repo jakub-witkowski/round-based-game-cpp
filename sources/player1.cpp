@@ -2,8 +2,8 @@
 
 #include "../headers/functions.h"
 
-#include <string>
-#include <memory>
+#include <thread>
+#include <chrono>
 #include <iostream>
 
 int main(int argc, char** argv)
@@ -16,15 +16,26 @@ int main(int argc, char** argv)
         std::cout << "No order filename given!" << std::endl;
     else
     {
-        /* A TRound object is created and initialized */
-        std::unique_ptr<TRound> round(new TRound('P', argv[1], argv[2], argv[3]));
-        
-        round->read_status();
-        round->get_player_ptr()->order_training(argv[3]);
-        round->get_player_ptr()->move_units(argv[3]);
-        // std::cout << round->get_player_ptr()->units;
-        // std::cout << round->get_player_ptr()->get_map_ptr();
-        // std::cout << round->get_player_ptr();
+        /* orders.txt from the previous round is deleted */
+        std::remove(argv[3]);
+
+        std::thread thread1(play_round, 'P', argv[1], argv[2], argv[3]);
+
+        unsigned int timer{};
+
+        if (!argv[4])
+            timer = 10;
+        else
+            timer = std::stoi(argv[4]);
+
+        // std::thread thread2(timer, timer);
+
+        if(!argv[4])
+            std::this_thread::sleep_for(std::chrono::seconds(timer));
+        else
+            std::this_thread::sleep_for(std::chrono::seconds(std::stoi(argv[4])));
+
+        thread1.join();
     }
     
     return 0;

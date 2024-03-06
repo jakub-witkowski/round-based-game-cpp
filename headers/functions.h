@@ -3,8 +3,12 @@
 
 #include <iostream>
 #include <iomanip>
+#include <chrono>
+#include <thread>
+
 #include "TMap.h"
 #include "TUnit.h"
+#include "TRound.h"
 
 /* display the map */
 std::ostream& operator<<(std::ostream& view, TMap* m)
@@ -83,6 +87,17 @@ std::ostream& operator<<(std::ostream& view, TPlayer* p)
     view << "Gold: " << p->gold << std::endl;
 
     return view;
+}
+
+/* Play one round */
+void play_round(char aff, std::string s1, std::string s2, std::string s3)
+{
+    /* A TRound object is created and initialized */
+    std::unique_ptr<TRound> round(new TRound(aff, s1, s2, s3));
+    round->read_status();
+    round->get_player_ptr()->order_training(s3);
+    round->get_player_ptr()->move_units(s3);
+    round->get_player_ptr()->attack_enemy(s3);
 }
 
 #endif

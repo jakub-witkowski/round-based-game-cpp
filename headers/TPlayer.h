@@ -41,7 +41,8 @@ class TPlayer
         void move_units(std::string);
         void order_move(TUnit*, std::string);
         bool is_map_field_occupied(char, unsigned int, unsigned int);
-        void attack_enemy();
+        void attack_enemy(std::string);
+        void order_attack(TUnit*, std::string);
 
     private:
         char identity;

@@ -45,6 +45,7 @@ TPikeman::TPikeman(char aff,
     set_cost(200);
     set_attack_range(2);
     set_training_time(0);
+    set_may_attack_enemy_units(true);
 
     update_unit_counter();
 

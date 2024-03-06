@@ -28,6 +28,7 @@ class TUnit
         void set_training_time(unsigned int);
         void set_is_base_busy(char);
         void set_map_ptr(TMap*);
+        void set_may_attack_enemy_units(bool);
 
         void update_remaining_movement_points(int);
         void update_unit_counter();
@@ -41,6 +42,8 @@ class TUnit
         std::pair<unsigned int, unsigned int> get_coordinates();
         TMap* get_map_ptr();
         unsigned int get_id();
+        bool get_may_attack_enemy_units();
+        unsigned int get_attack_range();
 
     protected:
         inline static unsigned int unit_counter;
@@ -55,6 +58,7 @@ class TUnit
         unsigned int attack_range;
         unsigned int training_time;
         char is_base_busy;
+        bool may_attack_enemy_units;
         TMap* map_ptr;
 };
 

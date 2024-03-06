@@ -45,6 +45,7 @@ TRam::TRam(char aff,
     set_cost(500);
     set_attack_range(1);
     set_training_time(0);
+    set_may_attack_enemy_units(true);
 
     update_unit_counter();
 

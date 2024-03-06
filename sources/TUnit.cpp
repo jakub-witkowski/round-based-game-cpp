@@ -66,6 +66,11 @@ void TUnit::set_map_ptr(TMap* m)
     this->map_ptr = m;
 }
 
+void TUnit::set_may_attack_enemy_units(bool m)
+{
+    this->may_attack_enemy_units = m;
+}
+
 void TUnit::update_remaining_movement_points(int m)
 {
     unsigned int new_speed = this->get_remaining_movement_points() - m;
@@ -120,4 +125,14 @@ TMap* TUnit::get_map_ptr()
 unsigned int TUnit::get_id()
 {
     return this->id;
+}
+
+bool TUnit::get_may_attack_enemy_units()
+{
+    return this->may_attack_enemy_units;
+}
+
+unsigned int TUnit::get_attack_range()
+{
+    return this->attack_range;
 }
