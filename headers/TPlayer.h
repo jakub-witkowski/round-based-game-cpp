@@ -20,6 +20,7 @@ class TPlayer
 {
     public:
         TPlayer();
+        TPlayer(char, TMap*);
         TPlayer(char, long, TMap*);
         ~TPlayer();
 

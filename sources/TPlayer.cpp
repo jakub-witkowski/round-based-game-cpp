@@ -7,6 +7,11 @@ TPlayer::TPlayer()
     // std::cout << "TPlayer default constructor called" << std::endl;
 }
 
+TPlayer::TPlayer(char id, TMap* m) : identity(id), gold(2000), map_ptr(m)
+{
+
+}
+
 TPlayer::TPlayer(char id, long g, TMap* m) : identity(id), gold(g), map_ptr(m)
 {
     // std::cout << "TPlayer constructor called" << std::endl;
@@ -21,7 +26,7 @@ TPlayer::~TPlayer()
             delete units[i];
         }
     }
-    std::cout << "TPlayer destructor called" << std::endl;
+    // std::cout << "TPlayer destructor called" << std::endl;
 }
 
 int TPlayer::cast_dice(int min, int max)
