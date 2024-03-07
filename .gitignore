@@ -1,16 +1,20 @@
 #.vscode folder
 .vscode
 
-#executable
+#executables
 /build/player
+/build/player1
+/build/player2
 
 #not ready
-/headers/TMediator.h
-/sources/TMediator.cpp
-/sources/mediator.cpp
+#/headers/TMediator.h
+#/sources/TMediator.cpp
+#/sources/mediator.cpp
 
 ### exec ###
 **/build/player**
+**/build/player1**
+**/build/player2**
 
 #orders file
 orders.txt
