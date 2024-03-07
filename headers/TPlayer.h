@@ -38,10 +38,12 @@ class TPlayer
         int cast_dice(int, int);
         void order_training(std::string);
         void update_gold(int);
+        void mine_gold(unsigned int);
         long get_gold();
         void move_units(std::string);
         void order_move(TUnit*, std::string);
         bool is_map_field_occupied(char, unsigned int, unsigned int);
+        unsigned int are_there_workers_at_the_mine();
         void attack_enemy(std::string);
         void order_attack(TUnit*, std::string);
         void write_player_file();

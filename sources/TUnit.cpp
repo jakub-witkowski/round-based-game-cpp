@@ -2,12 +2,12 @@
 
 TUnit::TUnit()
 {
-    std::cout << "TUnit() called" << std::endl;
+    // std::cout << "TUnit() called" << std::endl;
 }
 
 TUnit::~TUnit()
 {
-    std::cout << "~TUnit() called" << std::endl;
+    // std::cout << "~TUnit() called" << std::endl;
 }
 
 void TUnit::set_affiliation(char c)

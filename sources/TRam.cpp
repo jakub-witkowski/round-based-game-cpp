@@ -26,7 +26,7 @@ TRam::TRam(char aff, TMap* m) : TUnit()
     // set_map_ptr(m);
     update_unit_counter();
 
-    std::cout << "2-argument TRam constructor called" << std::endl;
+    // std::cout << "2-argument TRam constructor called" << std::endl;
 }
 
 TRam::TRam(char aff,
@@ -49,7 +49,7 @@ TRam::TRam(char aff,
 
     update_unit_counter();
 
-    std::cout << "6-argument TRam constructor called" << std::endl;
+    // std::cout << "6-argument TRam constructor called" << std::endl;
 }
 
 TRam::~TRam()

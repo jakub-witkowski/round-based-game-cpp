@@ -31,7 +31,7 @@ TBase::TBase(char aff, TMap* m) : TUnit()
 
     update_unit_counter();
 
-    std::cout << "2-argument TBase constructor called" << std::endl;
+    // std::cout << "2-argument TBase constructor called" << std::endl;
 }
 
 TBase::TBase(char aff,
@@ -54,7 +54,7 @@ TBase::TBase(char aff,
 
     update_unit_counter();
 
-    std::cout << "6-argument TBase constructor called" << std::endl;
+    // std::cout << "6-argument TBase constructor called" << std::endl;
 }
 
 TBase::~TBase()

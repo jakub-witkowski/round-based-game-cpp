@@ -26,7 +26,7 @@ TSwordsman::TSwordsman(char aff, TMap* m) : TUnit()
     // set_map_ptr(m);
     update_unit_counter();
 
-    std::cout << "2-argument TSwordsman constructor called" << std::endl;
+    // std::cout << "2-argument TSwordsman constructor called" << std::endl;
 }
 
 TSwordsman::TSwordsman(char aff,
@@ -49,7 +49,7 @@ TSwordsman::TSwordsman(char aff,
 
     update_unit_counter();
 
-    std::cout << "6-argument TSwordsman constructor called" << std::endl;
+    // std::cout << "6-argument TSwordsman constructor called" << std::endl;
 }
 
 TSwordsman::~TSwordsman()

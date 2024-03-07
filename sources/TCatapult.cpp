@@ -26,7 +26,7 @@ TCatapult::TCatapult(char aff, TMap* m) : TUnit()
     // set_map_ptr(m);
     update_unit_counter();
 
-    std::cout << "2-argument TCatapult constructor called" << std::endl;
+    // std::cout << "2-argument TCatapult constructor called" << std::endl;
 }
 
 TCatapult::TCatapult(char aff,
@@ -49,7 +49,7 @@ TCatapult::TCatapult(char aff,
 
     update_unit_counter();
 
-    std::cout << "6-argument TCatapult constructor called" << std::endl;
+    // std::cout << "6-argument TCatapult constructor called" << std::endl;
 }
 
 TCatapult::~TCatapult()

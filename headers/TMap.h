@@ -20,6 +20,7 @@ class TMap
         unsigned int get_map_size_y();
         
         unsigned int get_map_field_info(unsigned int, unsigned int);
+        std::pair<unsigned int, unsigned int> find_mine();
 
         friend std::ostream& operator<<(std::ostream&, TMap*);
 

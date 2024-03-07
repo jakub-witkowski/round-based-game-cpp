@@ -26,7 +26,7 @@ TArcher::TArcher(char aff, TMap* m) : TUnit()
     // set_map_ptr(m);
     update_unit_counter();
     
-    std::cout << "2-argument TArcher constructor called" << std::endl;
+    // std::cout << "2-argument TArcher constructor called" << std::endl;
 }
 
 TArcher::TArcher(char aff,
@@ -49,7 +49,7 @@ TArcher::TArcher(char aff,
 
     update_unit_counter();
 
-    std::cout << "6-argument TArcher constructor called" << std::endl;
+    // std::cout << "6-argument TArcher constructor called" << std::endl;
 }
 
 TArcher::~TArcher()

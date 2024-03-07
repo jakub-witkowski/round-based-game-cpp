@@ -4,12 +4,12 @@
 
 TPlayer::TPlayer()
 {
-    std::cout << "TPlayer default constructor called" << std::endl;
+    // std::cout << "TPlayer default constructor called" << std::endl;
 }
 
 TPlayer::TPlayer(char id, long g, TMap* m) : identity(id), gold(g), map_ptr(m)
 {
-    std::cout << "TPlayer constructor called" << std::endl;
+    // std::cout << "TPlayer constructor called" << std::endl;
 }
 
 TPlayer::~TPlayer()
@@ -287,6 +287,11 @@ void TPlayer::update_gold(int cost)
     this->gold -= cost;
 }
 
+void TPlayer::mine_gold(unsigned int gold_mined)
+{
+    this->gold += gold_mined;
+}
+
 long TPlayer::get_gold()
 {
     return this->gold;
@@ -558,6 +563,24 @@ bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
     }
     else
         return false;
+}
+
+unsigned int TPlayer::are_there_workers_at_the_mine()
+{
+    unsigned int number_of_workers_at_the_mine{};
+
+    for (auto el : this->units)
+    {
+        if ((el->get_affiliation() == this->identity) 
+            && (el->get_type() == 'W')
+            && (this->map_ptr->get_map_field_info(el->get_coordinates().first, el->get_coordinates().second) == 6))
+        {    
+            number_of_workers_at_the_mine++;
+        }
+    }
+
+    std::cout << "Workers at the mine: " << number_of_workers_at_the_mine << std::endl;
+    return number_of_workers_at_the_mine;
 }
 
 void TPlayer::set_gold(long g)

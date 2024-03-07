@@ -26,7 +26,7 @@ TKnight::TKnight(char aff, TMap* m)
     // set_map_ptr(m);
     update_unit_counter();
 
-    std::cout << "2-argument TKnight constructor called" << std::endl;
+    // std::cout << "2-argument TKnight constructor called" << std::endl;
 }
 
 TKnight::TKnight(char aff,
@@ -49,7 +49,7 @@ TKnight::TKnight(char aff,
 
     update_unit_counter();
 
-    std::cout << "6-argument TKnight constructor called" << std::endl;
+    // std::cout << "6-argument TKnight constructor called" << std::endl;
 }
 
 TKnight::~TKnight()

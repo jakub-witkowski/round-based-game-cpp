@@ -5,7 +5,7 @@
 
 TRound::TRound()
 {
-    std::cout << "TRound default constructor called" << std::endl;
+    // std::cout << "TRound default constructor called" << std::endl;
 }
 
 TRound::TRound(char who, std::string s1, std::string s2, std::string s3)
@@ -15,14 +15,14 @@ TRound::TRound(char who, std::string s1, std::string s2, std::string s3)
     this->status_filename = s2;
     this->orders_filename = s3;
     this->player_ptr = new TPlayer(this->which_player, 2000, this->map_ptr);
-    std::cout << "4-argument TRound constructor called" << std::endl;
+    // std::cout << "4-argument TRound constructor called" << std::endl;
 }
 
 TRound::~TRound()
 {
     delete map_ptr;
     delete player_ptr;
-    std::cout << "TRound destructor called" << std::endl;
+    // std::cout << "TRound destructor called" << std::endl;
 }
 
 void TRound::read_status()

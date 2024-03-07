@@ -7,7 +7,7 @@
 
 TMap::TMap()
 {
-    std::cout << "Default TMap constructor called" << std::endl;
+    // std::cout << "Default TMap constructor called" << std::endl;
 }
 
 /* Constructor */
@@ -28,7 +28,7 @@ TMap::TMap(std::string f) : filename(f), map_size_x(parse_map_x()), map_size_y(p
               << ", y-dimension: "
               << this->map_size_y << std::endl;*/
 
-    std::cout << "1-argument TMap constructor called" << std::endl;
+    // std::cout << "1-argument TMap constructor called" << std::endl;
 }
 
 /* Destructor */
@@ -40,7 +40,7 @@ TMap::~TMap()
 
     delete[] map_fields;
 
-    std::cout << "TMap destructor called" << std::endl;
+    // std::cout << "TMap destructor called" << std::endl;
 }
 
 /* read the horizontal dimension from txt file */
@@ -79,7 +79,7 @@ void TMap::load_map()
             int temp;
             field << line.at(i);
             field >> temp;
-            this->map_fields[row][i] = temp;
+            this->map_fields[i][row] = temp;
         }
         row++;
     }
@@ -98,4 +98,23 @@ unsigned int TMap::get_map_size_y()
 unsigned int TMap::get_map_field_info(unsigned int x, unsigned int y)
 {
     return this->map_fields[y][x];
+}
+
+std::pair<unsigned int, unsigned int> TMap::find_mine()
+{
+    std::pair<unsigned int, unsigned int> mine_coordinates{};
+
+    for (size_t y = 0; y < map_size_y; y++)
+    {
+        for (size_t x = 0; x < map_size_x; x++)
+        {
+            if (get_map_field_info(x,y) == 6)
+            {
+                mine_coordinates.first = x;
+                mine_coordinates.second = y;
+            }
+        }
+    }
+
+    return mine_coordinates;
 }
