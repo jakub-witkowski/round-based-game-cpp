@@ -22,8 +22,9 @@ TArcher::TArcher(char aff, TMap* m) : TUnit()
     set_cost(250);
     set_attack_range(5);
     set_training_time(3);
+    set_attack_table(15, 15, 15, 15, 10, 10, 15, 15);
+    set_as_opponent(2);
 
-    // set_map_ptr(m);
     update_unit_counter();
     
     // std::cout << "2-argument TArcher constructor called" << std::endl;
@@ -46,6 +47,8 @@ TArcher::TArcher(char aff,
     set_attack_range(5);
     set_training_time(0);
     set_may_attack_enemy_units(true);
+    set_attack_table(15, 15, 15, 15, 10, 10, 15, 15);
+    set_as_opponent(2);
 
     update_unit_counter();
 

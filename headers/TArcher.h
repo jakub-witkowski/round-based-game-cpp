@@ -21,6 +21,10 @@ class TArcher : public TUnit
         ~TArcher();
 
         int get_cost();
+
+        // private:
+        //         int attack_table[8] = { 15, 15, 15, 15, 10, 10, 15, 15 };
+        //         int as_opponent = 2;
 };
 
 #endif

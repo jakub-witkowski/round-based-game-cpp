@@ -21,6 +21,10 @@ class TSwordsman : public TUnit
         ~TSwordsman();
 
         int get_cost();
+
+    // private:
+    //     int attack_table[8] = { 30, 30, 30, 20, 20, 30, 30, 30 };
+    //     int as_opponent = 1;
 };
 
 #endif

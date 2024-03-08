@@ -21,6 +21,10 @@ class TPikeman : public TUnit
         ~TPikeman();
 
         int get_cost();
+
+        // private:
+        //         int attack_table[8] = { 35, 15, 15, 15, 15, 10, 15, 10 };
+        //         int as_opponent = 3;
 };
 
 #endif

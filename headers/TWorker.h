@@ -21,6 +21,10 @@ class TWorker : public TUnit
         ~TWorker();
 
         int get_cost();
+
+        // private:
+        //         int attack_table[8] = { 5, 5, 5, 5, 5, 5, 5, 1 };
+        //         int as_opponent = 6;
 };
 
 #endif

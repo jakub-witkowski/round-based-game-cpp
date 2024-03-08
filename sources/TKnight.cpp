@@ -22,6 +22,8 @@ TKnight::TKnight(char aff, TMap* m)
     set_cost(400);
     set_attack_range(1);
     set_training_time(5);
+    set_attack_table(35, 35, 35, 35, 35, 35, 35, 35);
+    set_as_opponent(0);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -46,6 +48,8 @@ TKnight::TKnight(char aff,
     set_attack_range(1);
     set_training_time(0);
     set_may_attack_enemy_units(true);
+    set_attack_table(35, 35, 35, 35, 35, 35, 35, 35);
+    set_as_opponent(0);
 
     update_unit_counter();
 

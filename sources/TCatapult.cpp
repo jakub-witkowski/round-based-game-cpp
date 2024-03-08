@@ -22,6 +22,8 @@ TCatapult::TCatapult(char aff, TMap* m) : TUnit()
     set_cost(800);
     set_attack_range(7);
     set_training_time(6);
+    set_attack_table(40, 40, 40, 40, 40, 40, 40, 50);
+    set_as_opponent(4);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -46,6 +48,8 @@ TCatapult::TCatapult(char aff,
     set_attack_range(7);
     set_training_time(0);
     set_may_attack_enemy_units(true);
+    set_attack_table(40, 40, 40, 40, 40, 40, 40, 50);
+    set_as_opponent(4);
 
     update_unit_counter();
 

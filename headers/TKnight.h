@@ -21,6 +21,10 @@ class TKnight : public TUnit
         ~TKnight();
 
         int get_cost();
+
+        // private:
+        //         int attack_table[8] = { 35, 35, 35, 35, 35, 35, 35, 35 };
+        //         int as_opponent{0};
 };
 
 #endif

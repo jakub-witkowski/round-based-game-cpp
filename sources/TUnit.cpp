@@ -146,3 +146,30 @@ unsigned int TUnit::get_stamina()
 {
     return this->stamina;
 }
+
+void TUnit::set_attack_table(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8)
+{
+    this->attack_table[0] = a1;
+    this->attack_table[1] = a2;
+    this->attack_table[2] = a3;
+    this->attack_table[3] = a4;
+    this->attack_table[4] = a5;
+    this->attack_table[5] = a6;
+    this->attack_table[6] = a7;
+    this->attack_table[7] = a8;
+}
+
+void TUnit::set_as_opponent(int op)
+{
+    this->as_opponent = op;
+}
+
+int TUnit::get_attack_table(int v)
+{
+    return this->attack_table[v];
+}
+
+int TUnit::get_as_opponent()
+{
+    return this->as_opponent;
+}

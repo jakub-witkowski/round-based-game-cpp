@@ -273,7 +273,45 @@ void TMediator::update_coordinates(std::string line)
     }
 }
 
-void TMediator::settle_fight(std::string line, size_t from, size_t to)
+void TMediator::settle_fight(std::string line, size_t first_space, size_t second_space)
 {
+    unsigned int attacker_id = std::stoi(line.substr(0,first_space));
+    unsigned int attacked_id = std::stoi(line.substr(second_space));
+    std::pair<unsigned int, unsigned int> attacked_unit_coordinates{};
+    unsigned int damage{};
+    unsigned int key{};
 
+    for (auto el : this->units)
+    {
+        if (el->get_id() == attacked_id)
+        {
+            key = el->get_as_opponent();
+            attacked_unit_coordinates.first = el->get_coordinates().first;
+            attacked_unit_coordinates.second = el->get_coordinates().second;
+        }
+    }
+
+    for (auto el : this->units)
+    {
+        if (el->get_id() == attacker_id)
+        {
+            damage = el->get_attack_table(key);
+        }
+    }
+
+    for (auto el : this->units)
+    {
+        if (el->get_id() == attacked_id)
+        {
+            el->set_stamina(el->get_stamina() - damage);
+        }
+    }
+
+    for (auto el : this->units)
+    {
+        if (el->get_id() == attacker_id)
+        {
+            el->set_coordinates(attacked_unit_coordinates.first, attacked_unit_coordinates.second);
+        }
+    }
 }

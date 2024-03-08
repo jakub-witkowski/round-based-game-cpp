@@ -21,6 +21,10 @@ class TRam : public TUnit
         ~TRam();
 
         int get_cost();
+
+        // private:
+        //         int attack_table[8] = { 10, 10, 10, 10, 10, 10, 10, 50 };
+        //         int as_opponent = 5;
 };
 
 #endif

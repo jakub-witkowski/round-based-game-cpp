@@ -21,6 +21,10 @@ class TCatapult : public TUnit
         ~TCatapult();
 
         int get_cost();
+
+        // private:
+        //         int attack_table[8] = { 40, 40, 40, 40, 40, 40, 40, 50 };
+        //         int as_opponent = 4;
 };
 
 #endif
