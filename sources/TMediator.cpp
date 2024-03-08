@@ -52,11 +52,54 @@ void TMediator::load_status()
 
         space_count = 0;
     }
+
+    std::remove(status_filename.c_str());
 }
 
 void TMediator::load_orders()
 {
+    std::ifstream input{orders_filename};
+    unsigned int space_count{0};
 
+    for (std::string line; std::getline(input, line);)
+    {
+        for (size_t i = 0; i < line.size(); i++)
+        {
+            if (line[i] == ' ')
+                space_count++;
+        }
+
+        if (space_count == 3)
+        {
+            update_coordinates(line);
+        }
+        else if (space_count == 2)
+        {
+            char action{};
+            size_t space_pos[2]{0,0};
+            int pos = 0;
+
+            for (size_t i = 0; i < line.size(); i++)
+            {    
+                if (line.at(i) == ' ')
+                {
+                    space_pos[pos] = i;
+                    pos++;
+                }
+            }
+
+            pos = 0;
+
+            action = line.at(space_pos[0]+1);
+
+            if (action == 'B')
+                ;
+            else if (action == 'A')
+                settle_fight(line, space_pos[0], space_pos[1]);     
+        }
+
+        space_count = 0;
+    }
 }
 
 void TMediator::load_player_file()
@@ -193,4 +236,44 @@ void TMediator::add_unit(std::string line)
             this->units.push_back(new TWorker(aff, x, y, id, stamina));
             break;
     }
+}
+
+void TMediator::update_coordinates(std::string line)
+{
+    size_t space_pos[3]{0,0,0};
+    int pos = 0;
+
+    unsigned int selected_unit{};
+    unsigned int target_x{};
+    unsigned int target_y{};
+
+    for (size_t i = 0; i < line.size(); i++)
+    {    
+        if (line.at(i) == ' ')
+        {
+            space_pos[pos] = i;
+            pos++;
+        }
+    }
+
+    pos = 0;
+
+    /* extract from string based on the positions of spaces */
+    selected_unit = std::stoi(line.substr(0,space_pos[0]));
+    target_x = std::stoi(line.substr(space_pos[1], space_pos[2]));
+    target_y = std::stoi(line.substr(space_pos[2]));
+
+    /* update the unit coordinates */
+    for (auto el : this->units)
+    {
+        if (el->get_id() == selected_unit)
+        {
+            el->set_coordinates(target_x, target_y);
+        }
+    }
+}
+
+void TMediator::settle_fight(std::string line, size_t from, size_t to)
+{
+
 }

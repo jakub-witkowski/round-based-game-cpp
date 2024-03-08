@@ -25,7 +25,9 @@ class TMediator
 
         void set_gold(long);
         void add_base(std::string);
-        void add_unit(std::string); 
+        void add_unit(std::string);
+        void update_coordinates(std::string);
+        void settle_fight(std::string, size_t, size_t);
 
         std::vector<TUnit*> units{};
         friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
