@@ -5,6 +5,7 @@
 /build/player
 /build/player1
 /build/player2
+/build/mediator
 
 #not ready
 #/headers/TMediator.h
@@ -15,6 +16,7 @@
 **/build/player**
 **/build/player1**
 **/build/player2**
+**/build/mediator**
 
 #orders file
 orders.txt
