@@ -27,6 +27,9 @@ class TMediator
         void add_base(std::string);
         void add_unit(std::string); 
 
+        std::vector<TUnit*> units{};
+        friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
+
     private:
         long gold{};
         std::string status_filename = "../status.txt";
@@ -35,7 +38,7 @@ class TMediator
         std::string player2_filename = "../player2.txt";
         unsigned int player1_round_counter{1};
         unsigned int player2_round_counter{1};
-        std::vector<TUnit*> units{};
+        // std::vector<TUnit*> units{};
         // std::vector<std::string> status{};
         // std::vector<std::string> orders{};
         // std::vector<std::string> player_file{};

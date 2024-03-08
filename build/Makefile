@@ -4,7 +4,7 @@ CFLAGS=-std=c++17
 srcdir = ../sources
 SOURCES1=$(srcdir)/player1.cpp $(srcdir)/TArcher.cpp $(srcdir)/TBase.cpp $(srcdir)/TCatapult.cpp $(srcdir)/TKnight.cpp $(srcdir)/TMap.cpp $(srcdir)/TPikeman.cpp $(srcdir)/TPlayer.cpp $(srcdir)/TRam.cpp $(srcdir)/TRound.cpp $(srcdir)/TSwordsman.cpp $(srcdir)/TUnit.cpp $(srcdir)/TWorker.cpp
 SOURCES2=$(srcdir)/player2.cpp $(srcdir)/TArcher.cpp $(srcdir)/TBase.cpp $(srcdir)/TCatapult.cpp $(srcdir)/TKnight.cpp $(srcdir)/TMap.cpp $(srcdir)/TPikeman.cpp $(srcdir)/TPlayer.cpp $(srcdir)/TRam.cpp $(srcdir)/TRound.cpp $(srcdir)/TSwordsman.cpp $(srcdir)/TUnit.cpp $(srcdir)/TWorker.cpp
-SOURCES3=$(srcdir)/TMediator.cpp $(srcdir)/TArcher.cpp $(srcdir)/TBase.cpp $(srcdir)/TCatapult.cpp $(srcdir)/TKnight.cpp $(srcdir)/TMap.cpp $(srcdir)/TPikeman.cpp $(srcdir)/TRam.cpp $(srcdir)/TSwordsman.cpp $(srcdir)/TUnit.cpp $(srcdir)/TWorker.cpp $(srcdir)/mediator.cpp
+SOURCES3=$(srcdir)/TMediator.cpp $(srcdir)/TArcher.cpp $(srcdir)/TBase.cpp $(srcdir)/TCatapult.cpp $(srcdir)/TKnight.cpp $(srcdir)/TMap.cpp $(srcdir)/TPikeman.cpp $(srcdir)/TPlayer.cpp $(srcdir)/TRam.cpp $(srcdir)/TRound.cpp $(srcdir)/TSwordsman.cpp $(srcdir)/TUnit.cpp $(srcdir)/TWorker.cpp $(srcdir)/mediator.cpp
 
 all: player1 player2 mediator run
 
