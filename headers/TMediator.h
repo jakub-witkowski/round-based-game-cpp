@@ -15,8 +15,8 @@ class TMediator
 
         void load_status();
         void load_orders();
-        void load_player_file();
-        void write_status();
+        void load_player_file(std::string);
+        void write_status(std::string);
         void run(std::string);
 
         unsigned int get_player1_round_number();
@@ -40,10 +40,7 @@ class TMediator
         std::string player2_filename = "../player2.txt";
         unsigned int player1_round_counter{1};
         unsigned int player2_round_counter{1};
-        // std::vector<TUnit*> units{};
-        // std::vector<std::string> status{};
-        // std::vector<std::string> orders{};
-        // std::vector<std::string> player_file{};
+        long previous_player_gold{};
 };
 
 #endif

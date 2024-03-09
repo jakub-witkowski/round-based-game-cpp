@@ -173,3 +173,13 @@ int TUnit::get_as_opponent()
 {
     return this->as_opponent;
 }
+
+void TUnit::set_is_defeated(bool def)
+{
+    this->is_defeated = def;
+}
+
+bool TUnit::get_is_defeated()
+{
+    return this->is_defeated;
+}

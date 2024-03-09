@@ -60,6 +60,9 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
 
     for (auto i : u)
     {
+        if (i->get_is_defeated() == true)
+            continue;
+
         view
             << " " << i->id
             << std::setw(11) << i->affiliation

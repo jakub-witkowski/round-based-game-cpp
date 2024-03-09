@@ -312,6 +312,8 @@ void TPlayer::move_units(std::string orders)
             continue;
         if (el->get_training_time() > 0)
             continue;
+        if (el->get_is_defeated() == true)
+            continue;
         if (el->get_training_time() == 0 && el->get_remaining_movement_points() > 0)
         {
             order_move(el, orders);
@@ -497,6 +499,8 @@ void TPlayer::attack_enemy(std::string orders)
         if (el->get_type() == 'B')
             continue;
         if (el->get_training_time() > 0)
+            continue;
+        if (el->get_is_defeated() == true)
             continue;
         if ((el->get_training_time() == 0) && (el->get_remaining_movement_points() > 0) && (el->get_may_attack_enemy_units() == true))
         {

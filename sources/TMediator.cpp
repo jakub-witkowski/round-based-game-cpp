@@ -102,14 +102,35 @@ void TMediator::load_orders()
     }
 }
 
-void TMediator::load_player_file()
+void TMediator::load_player_file(std::string p)
 {
-
+    if (p == "player1")
+       ;
+    else if (p == "player2")
+        ;
 }
 
-void TMediator::write_status()
+void TMediator::write_status(std::string p)
 {
+    std::ofstream status_output;
+    std::string line;
+    status_output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
 
+    if (status_output.is_open())
+    {
+        if ((p == "player1") && (player1_round_counter == 1))
+        {
+            line.append(std::to_string(2000));
+            line += "\n";
+        }
+        else if ((p == "player1") && (player1_round_counter > 1))
+        {
+            
+        }
+
+
+
+    }
 }
 
 void TMediator::run(std::string p)
@@ -281,6 +302,7 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
     unsigned int damage{};
     unsigned int key{};
 
+    /* determine the kinds of units that are to fight against one another */
     for (auto el : this->units)
     {
         if (el->get_id() == attacked_id)
@@ -291,6 +313,7 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
         }
     }
 
+    /*  */
     for (auto el : this->units)
     {
         if (el->get_id() == attacker_id)
@@ -304,14 +327,23 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
         if (el->get_id() == attacked_id)
         {
             el->set_stamina(el->get_stamina() - damage);
+
+            if (el->get_stamina() == 0)
+            {
+                for (auto i : this->units)
+                {
+                    if (i->get_id() == attacker_id)
+                    {
+                        i->set_coordinates(attacked_unit_coordinates.first, attacked_unit_coordinates.second);
+                    }
+                }
+
+                el->set_is_defeated(true);
+
+                std::cout << "Unit " << el->get_id() << " is defeated." << std::endl;
+            }
         }
     }
 
-    for (auto el : this->units)
-    {
-        if (el->get_id() == attacker_id)
-        {
-            el->set_coordinates(attacked_unit_coordinates.first, attacked_unit_coordinates.second);
-        }
-    }
+    
 }

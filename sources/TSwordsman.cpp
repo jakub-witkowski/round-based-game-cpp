@@ -24,6 +24,7 @@ TSwordsman::TSwordsman(char aff, TMap* m) : TUnit()
     set_training_time(3);
     set_attack_table(30, 30, 30, 20, 20, 30, 30, 30);
     set_as_opponent(1);
+    set_is_defeated(false);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -50,6 +51,7 @@ TSwordsman::TSwordsman(char aff,
     set_may_attack_enemy_units(true);
     set_attack_table(30, 30, 30, 20, 20, 30, 30, 30);
     set_as_opponent(1);
+    set_is_defeated(false);
 
     update_unit_counter();
 

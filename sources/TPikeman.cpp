@@ -24,6 +24,7 @@ TPikeman::TPikeman(char aff, TMap* m) : TUnit()
     set_training_time(3);
     set_attack_table(35, 15, 15, 15, 15, 10, 15, 10);
     set_as_opponent(3);
+    set_is_defeated(false);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -50,6 +51,7 @@ TPikeman::TPikeman(char aff,
     set_may_attack_enemy_units(true);
     set_attack_table(35, 15, 15, 15, 15, 10, 15, 10);
     set_as_opponent(3);
+    set_is_defeated(false);
 
     update_unit_counter();
 

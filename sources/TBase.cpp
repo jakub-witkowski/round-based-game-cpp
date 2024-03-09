@@ -30,6 +30,7 @@ TBase::TBase(char aff, TMap* m) : TUnit()
     set_is_base_busy('0');
     set_attack_table(0,0,0,0,0,0,0,0);
     set_as_opponent(7);
+    set_is_defeated(false);
 
     update_unit_counter();
 
@@ -55,6 +56,7 @@ TBase::TBase(char aff,
     set_is_base_busy(b);
     set_attack_table(0,0,0,0,0,0,0,0);
     set_as_opponent(7);
+    set_is_defeated(false);
 
     update_unit_counter();
 

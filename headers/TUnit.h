@@ -50,6 +50,8 @@ class TUnit
         void set_as_opponent(int);
         int get_attack_table(int);
         int get_as_opponent();
+        void set_is_defeated(bool);
+        bool get_is_defeated();
 
     protected:
         inline static unsigned int unit_counter;
@@ -66,6 +68,7 @@ class TUnit
         char is_base_busy;
         bool may_attack_enemy_units;
         TMap* map_ptr;
+        bool is_defeated;
 
         int attack_table[8];
         int as_opponent;

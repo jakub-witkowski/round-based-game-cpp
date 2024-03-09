@@ -14,17 +14,17 @@ int main()
 
         arbiter.load_status();
         arbiter.load_orders();
-        arbiter.load_player_file();
-        std::cout << arbiter.units;
-        arbiter.write_status();
+        // arbiter.load_player_file();
+        // std::cout << arbiter.units;
+        // arbiter.write_status();
         arbiter.update_round_number("player1");
 
         arbiter.run("player2");
 
         arbiter.load_status();
         arbiter.load_orders();
-        arbiter.load_player_file();
-        arbiter.write_status();
+        // arbiter.load_player_file();
+        // arbiter.write_status();
         arbiter.update_round_number("player2");
     }
 
