@@ -247,12 +247,12 @@ void TMediator::run(std::string p)
     if (p == "player1")
     {
         std::cout << "Player 1, Round " << player1_round_counter << std::endl;
-        std::system("./player1 ../map.txt ../status.txt ../orders.txt 2");
+        std::system("${workspaceFolder}/build/player1 ../map.txt ../status.txt ../orders.txt 2");
     }
     if (p == "player2")
     {
         std::cout << "Player 2, Round " << player2_round_counter << std::endl;
-        std::system("./player2 ../map.txt ../status.txt ../orders.txt 2");
+        std::system("${workspaceFolder}/build/player2 ../map.txt ../status.txt ../orders.txt 2");
     }
 }
 

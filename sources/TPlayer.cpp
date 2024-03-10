@@ -588,7 +588,7 @@ unsigned int TPlayer::are_there_workers_at_the_mine()
         }
     }
 
-    std::cout << "Workers at the mine: " << number_of_workers_at_the_mine << std::endl;
+    // std::cout << "Workers at the mine: " << number_of_workers_at_the_mine << std::endl;
     return number_of_workers_at_the_mine;
 }
 
@@ -706,6 +706,8 @@ void TPlayer::write_player_file()
     std::string fname;
     std::string player_file;
     int base_index;
+    char type;
+    unsigned int training_time;
 
     if (this->identity == 'P')
     {
@@ -726,8 +728,36 @@ void TPlayer::write_player_file()
     {
         if (this->units[base_index]->get_is_base_busy() != '0')
         {
+            type = this->units[base_index]->get_is_base_busy();
             player_file.append("T ");
-            player_file.append(std::to_string(this->units[units.size() - 1]->get_training_time() - 1));
+
+            switch(type)
+            {
+                case 'A':
+                    training_time = 3;
+                    break;
+                case 'C':
+                    training_time = 6;
+                    break;
+                case 'K':
+                    training_time = 5;
+                    break;
+                case 'P':
+                    training_time = 3;
+                    break;
+                case 'R':
+                    training_time = 4;
+                    break;
+                case 'S':
+                    training_time = 3;
+                    break;
+                case 'W':
+                    training_time = 2;
+                    break; 
+            }
+
+            player_file.append(std::to_string(training_time));
+            // player_file.append(std::to_string(this->units[units.size() - 1]->get_training_time() - 1));
             player_file.append("\n");
         }
         
