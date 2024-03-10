@@ -2,6 +2,7 @@
 #define TMEDIATOR_H
 
 #include "TUnit.h"
+#include "TMap.h"
 
 #include <vector>
 #include <string>
@@ -23,17 +24,23 @@ class TMediator
         unsigned int get_player2_round_number();
         void update_round_number(std::string);
 
-        void set_gold(long);
+        // void set_gold(long);
         void add_base(std::string);
+        void add_unit(char, std::string);
         void add_unit(std::string);
         void update_coordinates(std::string);
         void settle_fight(std::string, size_t, size_t);
+        void start_training(std::string, size_t, size_t);
 
         std::vector<TUnit*> units{};
         friend std::ostream& operator<<(std::ostream&, std::vector<TUnit*>);
 
     private:
-        long gold{};
+        TMap* map{nullptr};
+        long player1_gold_from_previous_round{};
+        long player2_gold_from_previous_round{};
+        unsigned int player1_training_time_left;
+        unsigned int player2_training_time_left;
         std::string status_filename = "../status.txt";
         std::string orders_filename = "../orders.txt";
         std::string player1_filename = "../player1.txt";

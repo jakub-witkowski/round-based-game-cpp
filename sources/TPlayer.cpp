@@ -45,7 +45,7 @@ void TPlayer::order_training(std::string orders)
     int drawing_result{};
     bool choice_made{false};
 
-    std::string prefix{"Started "};
+    std::string prefix{"Order given: "};
 	std::string phrase;
 
     if (this->gold < 100)

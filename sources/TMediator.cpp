@@ -10,11 +10,13 @@
 
 TMediator::TMediator()
 {
-
+    this->map = new TMap("../map.txt");
 }
 
 TMediator::~TMediator()
 {
+    delete map;
+
     if (this->units.size() > 0)
     {
         for (size_t i = 0; i < units.size(); i++)
@@ -39,7 +41,8 @@ void TMediator::load_status()
 
         if (space_count == 0)
         {
-            this->set_gold(std::stol(line));
+            // this->set_gold(std::stol(line));
+            continue;
         }
         else if (space_count == 6)
         {
@@ -52,8 +55,6 @@ void TMediator::load_status()
 
         space_count = 0;
     }
-
-    std::remove(status_filename.c_str());
 }
 
 void TMediator::load_orders()
@@ -93,7 +94,7 @@ void TMediator::load_orders()
             action = line.at(space_pos[0]+1);
 
             if (action == 'B')
-                ;
+                start_training(line, space_pos[0], space_pos[1]);
             else if (action == 'A')
                 settle_fight(line, space_pos[0], space_pos[1]);     
         }
@@ -104,32 +105,140 @@ void TMediator::load_orders()
 
 void TMediator::load_player_file(std::string p)
 {
+    std::ifstream input;
+    unsigned int space_count{0};
+    size_t space_pos{};
+
     if (p == "player1")
-       ;
+        input.open(this->player1_filename);
     else if (p == "player2")
-        ;
+        input.open(this->player2_filename);
+
+    for (std::string line; std::getline(input, line);)
+    {
+        for (size_t i = 0; i < line.size(); i++)
+        {
+            if (line[i] == ' ')
+            {
+                space_count++;
+                space_pos = i;
+            }
+        }
+
+        if (space_count == 0)
+        {
+            if (p == "player1")
+            {
+                this->player1_gold_from_previous_round = std::stoi(line);
+            }
+            else if (p == "player2")
+            {
+                this->player2_gold_from_previous_round = std::stoi(line);
+            }
+        }
+        else if (space_count == 1)
+        {
+            if (p == "player1")
+            {
+                this->player1_training_time_left = std::stoi(line.substr(0,space_pos));
+
+                if (this->player1_training_time_left == 0)
+                {
+                    add_unit(this->units[0]->get_is_base_busy(), "player1");
+                    this->units[0]->set_is_base_busy('0');
+                }
+            }
+            else if (p == "player2")
+            {
+                this->player2_training_time_left = std::stoi(line.substr(0,space_pos));
+
+                if (this->player2_training_time_left == 0)
+                {
+                    add_unit(this->units[1]->get_is_base_busy(), "player2");
+                    this->units[1]->set_is_base_busy('0');
+                }
+            }
+        }
+        
+        space_count = 0;
+    }
 }
 
 void TMediator::write_status(std::string p)
 {
+    std::remove(status_filename.c_str());
+
     std::ofstream status_output;
     std::string line;
     status_output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
 
     if (status_output.is_open())
     {
-        if ((p == "player1") && (player1_round_counter == 1))
+        if (p == "player1")
         {
-            line.append(std::to_string(2000));
-            line += "\n";
+            if (player1_round_counter == 1)
+            {
+                line.append(std::to_string(2000));
+                line += "\n";
+            }
+            else if (player1_round_counter >= 2)
+            {
+                line.append(std::to_string(this->player2_gold_from_previous_round));
+                line += "\n";
+            }
         }
-        else if ((p == "player1") && (player1_round_counter > 1))
+        else if (p == "player2")
         {
+            line.append(std::to_string(this->player1_gold_from_previous_round));
+            line += "\n";    
+        }
+
+        status_output << line;
+        line.clear();
+    
+
+        for (auto el : this->units)
+        {
+            if (el->get_is_defeated() == true)
+                continue;
+
+            line.append(std::to_string(el->get_affiliation()));
+            line.append(" ");
+
+            line.append(std::to_string(el->get_type()));
+            line.append(" ");
+
+            line.append(std::to_string(el->get_id()));
+            line.append(" ");
+
+            line.append(std::to_string(el->get_coordinates().first));
+            line.append(" ");
+
+            line.append(std::to_string(el->get_coordinates().second));
+            line.append(" ");
             
+            line.append(std::to_string(el->get_stamina()));
+
+            if (el->get_type() == 'B')
+            {
+                line.append(" ");
+                line.append(std::to_string(el->get_is_base_busy()));
+            }
+
+            line.append("\n");
+            status_output << line;
+            line.clear();
         }
+    }
 
+    status_output.close();
+    
+    if (this->units.size() > 0)
+    {
+        for (auto el : units)
+            delete el;
 
-
+        units.clear();
     }
 }
 
@@ -165,10 +274,10 @@ void TMediator::update_round_number(std::string p)
         this->player2_round_counter++;
 }
 
-void TMediator::set_gold(long g)
-{
-    this->gold = g;
-}
+// void TMediator::set_gold(long g)
+// {
+//     this->gold = g;
+// }
 
 void TMediator::add_base(std::string line)
 {
@@ -201,6 +310,40 @@ void TMediator::add_base(std::string line)
     busy = line[line.size() - 1];
 
     this->units.push_back(new TBase(aff, x, y, id, stamina, busy));
+}
+
+void TMediator::add_unit(char type, std::string player)
+{
+    char aff;
+    if (player == "player1")
+        aff = 'P';
+    else if (player == "player2")
+        aff = 'E';
+
+    switch(type)
+    {
+        case 'A':
+            this->units.push_back(new TArcher(aff, this->map));
+            break;
+        case 'C':
+            this->units.push_back(new TCatapult(aff, this->map));
+            break;
+        case 'K':
+            this->units.push_back(new TKnight(aff, this->map));
+            break;
+        case 'P':
+            this->units.push_back(new TPikeman(aff, this->map));
+            break;
+        case 'R':
+            this->units.push_back(new TRam(aff, this->map));
+            break;
+        case 'S':
+            this->units.push_back(new TSwordsman(aff, this->map));
+            break;
+        case 'W':
+            this->units.push_back(new TWorker(aff, this->map));
+            break;
+    }
 }
 
 void TMediator::add_unit(std::string line)
@@ -301,6 +444,7 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
     std::pair<unsigned int, unsigned int> attacked_unit_coordinates{};
     unsigned int damage{};
     unsigned int key{};
+    bool victory{false};
 
     /* determine the kinds of units that are to fight against one another */
     for (auto el : this->units)
@@ -313,7 +457,7 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
         }
     }
 
-    /*  */
+    /* Determine the damage that is beaing dealt by the attacker using the attack tables */
     for (auto el : this->units)
     {
         if (el->get_id() == attacker_id)
@@ -322,28 +466,43 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
         }
     }
 
+    /* update the attacked unit stamina */
     for (auto el : this->units)
     {
         if (el->get_id() == attacked_id)
         {
             el->set_stamina(el->get_stamina() - damage);
 
-            if (el->get_stamina() == 0)
+            if (el->get_stamina() <= 0)
             {
-                for (auto i : this->units)
-                {
-                    if (i->get_id() == attacker_id)
-                    {
-                        i->set_coordinates(attacked_unit_coordinates.first, attacked_unit_coordinates.second);
-                    }
-                }
-
                 el->set_is_defeated(true);
-
+                victory = true;
                 std::cout << "Unit " << el->get_id() << " is defeated." << std::endl;
             }
         }
     }
 
-    
+    /* if victorious, the attacker moves to the spot previously occupied by the attacked unit */
+    if (victory == true)
+    {   
+        for (auto i : this->units)
+        {
+            if (i->get_id() == attacker_id)
+            {
+                i->set_coordinates(attacked_unit_coordinates.first, attacked_unit_coordinates.second);
+            }
+        }
+    }    
+}
+
+void TMediator::start_training(std::string line, size_t first_space, size_t second_space)
+{
+    unsigned int base_id = std::stoi(line.substr(0,first_space));
+    char unit_to_be_trained = line.at(second_space + 1);
+
+    for (auto el : this->units)
+    {
+        if (el->get_id() == base_id)
+            el->set_is_base_busy(unit_to_be_trained);
+    }
 }
