@@ -155,17 +155,9 @@ void TRound::update_training_times()
         base_index = 1;
     }
 
-    if (this->get_player_ptr()->units[base_index]->get_training_time_left() > 1)
-    {
-        unsigned int current_training_time_left = this->get_player_ptr()->units[base_index]->get_training_time_left();
-        this->get_player_ptr()->units[base_index]->set_training_time_left(current_training_time_left - 1);
-    }
-
     if (this->get_player_ptr()->units[base_index]->get_training_time_left() == 1)
     {
         char unit_type = this->get_player_ptr()->units[base_index]->get_is_base_busy();
-        this->get_player_ptr()->units[base_index]->set_training_time_left(0);
-        this->get_player_ptr()->units[base_index]->set_is_base_busy('0');
 
         switch(unit_type)
         {
@@ -173,24 +165,32 @@ void TRound::update_training_times()
                 this->get_player_ptr()->units.push_back(new TArcher(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break;
             case 'C':
-                ;
+                this->get_player_ptr()->units.push_back(new TCatapult(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break;
             case 'K':
-                ;
+                this->get_player_ptr()->units.push_back(new TKnight(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break;
             case 'P':
-                ;
+                this->get_player_ptr()->units.push_back(new TPikeman(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break;
             case 'R':
-                ;
+                this->get_player_ptr()->units.push_back(new TRam(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break;
             case 'S':
-                ;
+                this->get_player_ptr()->units.push_back(new TSwordsman(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break;
             case 'W':
-                ;
+                this->get_player_ptr()->units.push_back(new TWorker(this->get_player_ptr()->get_identity(), this->map_ptr));
                 break; 
         }
+
+        this->get_player_ptr()->units[base_index]->set_training_time_left(0);
+        this->get_player_ptr()->units[base_index]->set_is_base_busy('0');
+    }
+    else if (this->get_player_ptr()->units[base_index]->get_training_time_left() > 1)
+    {
+        unsigned int current_training_time_left = this->get_player_ptr()->units[base_index]->get_training_time_left();
+        this->get_player_ptr()->units[base_index]->set_training_time_left(current_training_time_left - 1);
     }
 }
 
