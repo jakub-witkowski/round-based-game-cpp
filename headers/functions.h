@@ -99,7 +99,8 @@ void play_round(char aff, std::string s1, std::string s2, std::string s3)
     std::unique_ptr<TRound> round(new TRound(aff, s1, s2, s3));
     // std::cout << "Mine coordinates: " << round->get_map_ptr()->find_mine().first << ", " << round->get_map_ptr()->find_mine().second;
     round->read_status();
-    std::cout << round->get_player_ptr()->units;
+    // std::cout << round->get_player_ptr()->units;
+    std::cout << round->get_player_ptr();
     round->get_player_ptr()->mine_gold(round->get_player_ptr()->are_there_workers_at_the_mine() * 100);
     round->get_player_ptr()->order_training(s3);
     round->get_player_ptr()->move_units(s3);
