@@ -31,6 +31,7 @@ TBase::TBase(char aff, TMap* m) : TUnit()
     set_attack_table(0,0,0,0,0,0,0,0);
     set_as_opponent(7);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
 
@@ -57,6 +58,7 @@ TBase::TBase(char aff,
     set_attack_table(0,0,0,0,0,0,0,0);
     set_as_opponent(7);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
 

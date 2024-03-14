@@ -25,6 +25,7 @@ TKnight::TKnight(char aff, TMap* m)
     set_attack_table(35, 35, 35, 35, 35, 35, 35, 35);
     set_as_opponent(0);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -52,6 +53,7 @@ TKnight::TKnight(char aff,
     set_attack_table(35, 35, 35, 35, 35, 35, 35, 35);
     set_as_opponent(0);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
 

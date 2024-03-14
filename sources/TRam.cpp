@@ -25,6 +25,7 @@ TRam::TRam(char aff, TMap* m) : TUnit()
     set_attack_table(10, 10, 10, 10, 10, 10, 10, 50);
     set_as_opponent(5);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -52,6 +53,7 @@ TRam::TRam(char aff,
     set_attack_table(10, 10, 10, 10, 10, 10, 10, 50);
     set_as_opponent(5);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
 

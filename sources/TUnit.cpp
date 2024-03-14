@@ -193,3 +193,13 @@ unsigned int TUnit::get_training_time_left()
 {
     return this->training_time_left;
 }
+
+void TUnit::set_training_started_in_the_present_round(bool tr)
+{
+    this->training_started_in_the_present_round = tr;
+}
+
+bool TUnit::get_training_started_in_the_present_round()
+{
+    return this->training_started_in_the_present_round;
+}

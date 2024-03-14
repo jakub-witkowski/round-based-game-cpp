@@ -25,6 +25,7 @@ TWorker::TWorker(char aff, TMap* m) : TUnit()
     set_attack_table(5, 5, 5, 5, 5, 5, 5, 1);
     set_as_opponent(6);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     // set_map_ptr(m);
     update_unit_counter();
@@ -52,6 +53,7 @@ TWorker::TWorker(char aff,
     set_attack_table(5, 5, 5, 5, 5, 5, 5, 1);
     set_as_opponent(6);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
 

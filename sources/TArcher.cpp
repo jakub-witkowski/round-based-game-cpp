@@ -25,6 +25,7 @@ TArcher::TArcher(char aff, TMap* m) : TUnit()
     set_attack_table(15, 15, 15, 15, 10, 10, 15, 15);
     set_as_opponent(2);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
     
@@ -51,6 +52,7 @@ TArcher::TArcher(char aff,
     set_attack_table(15, 15, 15, 15, 10, 10, 15, 15);
     set_as_opponent(2);
     set_is_defeated(false);
+    set_training_started_in_the_present_round(false);
 
     update_unit_counter();
 
