@@ -13,6 +13,8 @@ class TRound
 
         void read_status();
         void write_status();
+        void load_player_file();
+        void update_training_times();
 
         TPlayer* get_player_ptr();
         TMap* get_map_ptr();

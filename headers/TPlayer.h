@@ -50,6 +50,7 @@ class TPlayer
         void write_player_file();
         void set_training_time_left(char, unsigned int);
         void set_training_initiated(char);
+        char get_identity();
 
     private:
         char identity;

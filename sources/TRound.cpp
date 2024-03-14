@@ -104,6 +104,96 @@ void TRound::write_status()
     output.close();
 }
 
+void TRound::load_player_file()
+{
+    std::ifstream input;
+    unsigned int space_count{0};
+    size_t space_pos{};
+    int base_index;
+
+    if (this->get_player_ptr()->get_identity() == 'P')
+    {
+        input.open("../player1.txt");
+        base_index = 0;
+    }
+    else if (this->get_player_ptr()->get_identity() == 'E')
+    {
+        input.open("../player2.txt");
+        base_index = 1;
+    }
+
+    for (std::string line; std::getline(input, line);)
+    {
+        for (size_t i = 0; i < line.size(); i++)
+        {
+            if (line[i] == ' ')
+            {
+                space_count++;
+                space_pos = i;
+            }
+        }
+
+        if (space_count == 1)
+        {
+            this->get_player_ptr()->units[base_index]->set_training_time_left(std::stoi(line.substr(space_pos)));
+        }
+        
+        space_count = 0;
+    }
+}
+
+void TRound::update_training_times()
+{
+    int base_index;
+
+    if (this->get_player_ptr()->get_identity() == 'P')
+    {
+        base_index = 0;
+    }
+    else if (this->get_player_ptr()->get_identity() == 'E')
+    {
+        base_index = 1;
+    }
+
+    if (this->get_player_ptr()->units[base_index]->get_training_time_left() > 1)
+    {
+        unsigned int current_training_time_left = this->get_player_ptr()->units[base_index]->get_training_time_left();
+        this->get_player_ptr()->units[base_index]->set_training_time_left(current_training_time_left - 1);
+    }
+
+    if (this->get_player_ptr()->units[base_index]->get_training_time_left() == 1)
+    {
+        char unit_type = this->get_player_ptr()->units[base_index]->get_is_base_busy();
+        this->get_player_ptr()->units[base_index]->set_training_time_left(0);
+        this->get_player_ptr()->units[base_index]->set_is_base_busy('0');
+
+        switch(unit_type)
+        {
+            case 'A':
+                this->get_player_ptr()->units.push_back(new TArcher(this->get_player_ptr()->get_identity(), this->map_ptr));
+                break;
+            case 'C':
+                ;
+                break;
+            case 'K':
+                ;
+                break;
+            case 'P':
+                ;
+                break;
+            case 'R':
+                ;
+                break;
+            case 'S':
+                ;
+                break;
+            case 'W':
+                ;
+                break; 
+        }
+    }
+}
+
 TPlayer* TRound::get_player_ptr()
 {
     return this->player_ptr;

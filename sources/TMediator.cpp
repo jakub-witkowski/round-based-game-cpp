@@ -140,23 +140,24 @@ void TMediator::load_player_file(std::string p)
         {
             if (p == "player1")
             {
-                this->player1_training_time_left = std::stoi(line.substr(space_pos));
+                this->units[0]->set_training_time_left(std::stoi(line.substr(space_pos)));
 
-                if (this->player1_training_time_left == 0)
-                {
-                    add_unit(this->units[0]->get_is_base_busy(), "player1");
-                    this->units[0]->set_is_base_busy('0');
-                }
+                // if (this->player1_training_time_left == 0)
+                // {
+                //     add_unit(this->units[0]->get_is_base_busy(), "player1");
+                //     this->units[0]->set_is_base_busy('0');
+                // }
             }
             else if (p == "player2")
             {
-                this->player2_training_time_left = std::stoi(line.substr(space_pos));
+                this->units[1]->set_training_time_left(std::stoi(line.substr(space_pos)));
+                // this->player2_training_time_left = std::stoi(line.substr(space_pos));
 
-                if (this->player2_training_time_left == 0)
-                {
-                    add_unit(this->units[1]->get_is_base_busy(), "player2");
-                    this->units[1]->set_is_base_busy('0');
-                }
+                // if (this->player2_training_time_left == 0)
+                // {
+                //     add_unit(this->units[1]->get_is_base_busy(), "player2");
+                //     this->units[1]->set_is_base_busy('0');
+                // }
             }
         }
         

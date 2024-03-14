@@ -54,8 +54,8 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
         << std::setw(9) << "X"
         << std::setw(9) << "Y"
         << std::setw(9) << "St"
-        << std::setw(9) << "Time"
         << std::setw(9) << "Busy"
+        << std::setw(9) << "Time"
         << std::endl;
 
     for (auto i : u)
@@ -69,12 +69,12 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
             << std::setw(9) << i->type
             << std::setw(9) << i->coordinates.first
             << std::setw(9) << i->coordinates.second
-            << std::setw(9) << i->stamina
-            << std::setw(9) << i->training_time;
+            << std::setw(9) << i->stamina;
         
         if (i->type == 'B')
             view 
-            << std::setw(9) << i->is_base_busy;
+            << std::setw(9) << i->is_base_busy
+            << std::setw(9) << i->training_time_left;
         
         view << std::endl;
     }
@@ -99,10 +99,12 @@ void play_round(char aff, std::string s1, std::string s2, std::string s3)
     std::unique_ptr<TRound> round(new TRound(aff, s1, s2, s3));
     // std::cout << "Mine coordinates: " << round->get_map_ptr()->find_mine().first << ", " << round->get_map_ptr()->find_mine().second;
     round->read_status();
-    // std::cout << round->get_player_ptr()->units;
+    round->load_player_file();
+    round->update_training_times();
     std::cout << round->get_player_ptr();
     round->get_player_ptr()->mine_gold(round->get_player_ptr()->are_there_workers_at_the_mine() * 100);
     round->get_player_ptr()->order_training(s3);
+    std::cout << round->get_player_ptr()->units;
     round->get_player_ptr()->move_units(s3);
     round->get_player_ptr()->attack_enemy(s3);
     round->get_player_ptr()->write_player_file();

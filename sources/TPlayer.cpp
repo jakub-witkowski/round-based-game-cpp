@@ -734,7 +734,7 @@ void TPlayer::write_player_file()
     std::string player_file;
     int base_index;
     // char type;
-    unsigned int training_time_left;
+    // unsigned int training_time_left;
 
     if (this->identity == 'P')
     {
@@ -783,15 +783,16 @@ void TPlayer::write_player_file()
             //         break; 
             // }
 
-            if (this->units[base_index]->get_training_started_in_the_present_round() == true)
-                training_time_left = this->units[base_index]->get_training_time_left();
-            else if (this->units[base_index]->get_training_started_in_the_present_round() == false)
-            {
-                if (this->units[base_index]->get_training_time_left() >= 1)
-                    training_time_left = this->units[base_index]->get_training_time_left() - 1;
-            }
+            // if (this->units[base_index]->get_training_started_in_the_present_round() == true)
+            //     training_time_left = this->units[base_index]->get_training_time_left();
+            // else if (this->units[base_index]->get_training_started_in_the_present_round() == false)
+            // {
+            //     if (this->units[base_index]->get_training_time_left() >= 1)
+            //         training_time_left = this->units[base_index]->get_training_time_left() - 1;
+            // }
             // player_file.append(std::to_string(this->units[units.size() - 1]->get_training_time() - 1));
-            player_file.append(std::to_string(training_time_left));
+                        
+            player_file.append(std::to_string(this->units[base_index]->get_training_time_left()));
             player_file.append("\n");
         }
         
@@ -816,4 +817,9 @@ void TPlayer::set_training_initiated(char aff)
         this->units[0]->set_training_started_in_the_present_round(true);
     if (aff == 'E')
         this->units[1]->set_training_started_in_the_present_round(true);
+}
+
+char TPlayer::get_identity()
+{
+    return this->identity;
 }
