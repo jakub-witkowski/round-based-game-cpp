@@ -263,6 +263,7 @@ void TPlayer::order_training(std::string orders)
     if (choice_made == true)
 	{
         this->set_base_busy(this->identity, temporary_unit->get_type());
+        this->set_training_time_left(this->identity, temporary_unit->get_training_time());
 
         std::ofstream output;
         output.open(orders, std::ofstream::out | std::ofstream::app);
@@ -716,8 +717,8 @@ void TPlayer::write_player_file()
     std::string fname;
     std::string player_file;
     int base_index;
-    char type;
-    unsigned int training_time;
+    // char type;
+    // unsigned int training_time;
 
     if (this->identity == 'P')
     {
@@ -738,35 +739,35 @@ void TPlayer::write_player_file()
     {
         if (this->units[base_index]->get_is_base_busy() != '0')
         {
-            type = this->units[base_index]->get_is_base_busy();
+            // type = this->units[base_index]->get_is_base_busy();
             player_file.append("T ");
 
-            switch(type)
-            {
-                case 'A':
-                    training_time = 3;
-                    break;
-                case 'C':
-                    training_time = 6;
-                    break;
-                case 'K':
-                    training_time = 5;
-                    break;
-                case 'P':
-                    training_time = 3;
-                    break;
-                case 'R':
-                    training_time = 4;
-                    break;
-                case 'S':
-                    training_time = 3;
-                    break;
-                case 'W':
-                    training_time = 2;
-                    break; 
-            }
+            // switch(type)
+            // {
+            //     case 'A':
+            //         training_time = 3;
+            //         break;
+            //     case 'C':
+            //         training_time = 6;
+            //         break;
+            //     case 'K':
+            //         training_time = 5;
+            //         break;
+            //     case 'P':
+            //         training_time = 3;
+            //         break;
+            //     case 'R':
+            //         training_time = 4;
+            //         break;
+            //     case 'S':
+            //         training_time = 3;
+            //         break;
+            //     case 'W':
+            //         training_time = 2;
+            //         break; 
+            // }
 
-            player_file.append(std::to_string(training_time));
+            player_file.append(std::to_string(this->units[base_index]->get_training_time_left()));
             // player_file.append(std::to_string(this->units[units.size() - 1]->get_training_time() - 1));
             player_file.append("\n");
         }
@@ -776,4 +777,12 @@ void TPlayer::write_player_file()
 
     output << player_file;
     output.close();
+}
+
+void TPlayer::set_training_time_left(char aff, unsigned int t)
+{
+    if (aff == 'P')
+        this->units[0]->set_training_time_left(t);
+    else if (aff == 'E')
+        this->units[1]->set_training_time_left(t);
 }

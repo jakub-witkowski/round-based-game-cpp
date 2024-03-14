@@ -48,6 +48,7 @@ class TPlayer
         void attack_enemy(std::string);
         void order_attack(TUnit*, std::string);
         void write_player_file();
+        void set_training_time_left(char, unsigned int);
 
     private:
         char identity;

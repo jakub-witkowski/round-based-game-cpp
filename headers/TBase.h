@@ -19,9 +19,6 @@ class TBase : public TUnit
                 char);
 
         ~TBase();
-
-        // private:
-        //         int as_opponent = 7;
 };
 
 #endif

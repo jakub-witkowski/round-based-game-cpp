@@ -183,3 +183,13 @@ bool TUnit::get_is_defeated()
 {
     return this->is_defeated;
 }
+
+void TUnit::set_training_time_left(unsigned int t)
+{
+    this->training_time_left = t;
+}
+
+unsigned int TUnit::get_training_time_left()
+{
+    return this->training_time_left;
+}

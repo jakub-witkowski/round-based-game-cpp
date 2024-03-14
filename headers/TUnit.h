@@ -52,6 +52,8 @@ class TUnit
         int get_as_opponent();
         void set_is_defeated(bool);
         bool get_is_defeated();
+        void set_training_time_left(unsigned int);
+        unsigned int get_training_time_left();   
 
     protected:
         inline static unsigned int unit_counter;
@@ -72,6 +74,7 @@ class TUnit
 
         int attack_table[8];
         int as_opponent;
+        unsigned int training_time_left;
 };
 
 #endif
