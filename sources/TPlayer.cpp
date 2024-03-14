@@ -514,7 +514,7 @@ void TPlayer::order_move(TUnit* u, std::string orders)
             << ". "
             << std::endl;
     
-            u->set_coordinates(target_x, target_y);
+            // u->set_coordinates(target_x, target_y);
         }
 }
 void TPlayer::attack_enemy(std::string orders)
