@@ -140,7 +140,7 @@ void TMediator::load_player_file(std::string p)
         {
             if (p == "player1")
             {
-                this->player1_training_time_left = std::stoi(line.substr(0,space_pos));
+                this->player1_training_time_left = std::stoi(line.substr(space_pos));
 
                 if (this->player1_training_time_left == 0)
                 {
@@ -150,7 +150,7 @@ void TMediator::load_player_file(std::string p)
             }
             else if (p == "player2")
             {
-                this->player2_training_time_left = std::stoi(line.substr(0,space_pos));
+                this->player2_training_time_left = std::stoi(line.substr(space_pos));
 
                 if (this->player2_training_time_left == 0)
                 {
@@ -168,9 +168,9 @@ void TMediator::write_status(std::string p)
 {
     std::remove(status_filename.c_str());
 
-    std::ofstream status_output;
+    std::ofstream status_output{this->status_filename};
     std::string line;
-    status_output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
+    // status_output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
 
     if (status_output.is_open())
     {
@@ -202,10 +202,12 @@ void TMediator::write_status(std::string p)
             if (el->get_is_defeated() == true)
                 continue;
 
-            line.append(std::to_string(el->get_affiliation()));
+            // line.append(std::to_string(el->get_affiliation()));
+            line += el->get_affiliation();
             line.append(" ");
 
-            line.append(std::to_string(el->get_type()));
+            // line.append(std::to_string(el->get_type()));
+            line += el->get_type();
             line.append(" ");
 
             line.append(std::to_string(el->get_id()));
@@ -222,7 +224,8 @@ void TMediator::write_status(std::string p)
             if (el->get_type() == 'B')
             {
                 line.append(" ");
-                line.append(std::to_string(el->get_is_base_busy()));
+                // line.append(std::to_string(el->get_is_base_busy()));
+                line += el->get_is_base_busy();
             }
 
             line.append("\n");
@@ -247,12 +250,12 @@ void TMediator::run(std::string p)
     if (p == "player1")
     {
         std::cout << "Player 1, Round " << player1_round_counter << std::endl;
-        std::system("${workspaceFolder}/build/player1 ../map.txt ../status.txt ../orders.txt 2");
+        std::system("./player1 ../map.txt ../status.txt ../orders.txt 2");
     }
     if (p == "player2")
     {
         std::cout << "Player 2, Round " << player2_round_counter << std::endl;
-        std::system("${workspaceFolder}/build/player2 ../map.txt ../status.txt ../orders.txt 2");
+        std::system("./player2 ../map.txt ../status.txt ../orders.txt 2");
     }
 }
 
@@ -303,6 +306,7 @@ void TMediator::add_base(std::string line)
     pos = 0;
 
     aff = line[0];
+    // aff = (char) stoi(line.substr(0,space_pos[0]));
     id = stoi(line.substr(space_pos[1], space_pos[2]));
     x = stoi(line.substr(space_pos[2], space_pos[3]));
     y = stoi(line.substr(space_pos[3], space_pos[4]));

@@ -14,9 +14,10 @@ int main()
 
         arbiter.load_status();
         arbiter.load_orders();
-        arbiter.load_player_file("player1");
+        arbiter.load_player_file("player1"); // stoi throws an exception
+        std::cout << "From within mediator: " << std::endl;
         std::cout << arbiter.units;
-        arbiter.write_status("player1");
+        // arbiter.write_status("player1");
         arbiter.update_round_number("player1");
 
         arbiter.run("player2");
@@ -24,8 +25,9 @@ int main()
         arbiter.load_status();
         arbiter.load_orders();
         arbiter.load_player_file("player2");
+        std::cout << "From within mediator: " << std::endl;
         std::cout << arbiter.units;
-        arbiter.write_status("player2");
+        // arbiter.write_status("player2");
         arbiter.update_round_number("player2");
     }
 

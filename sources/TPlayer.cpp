@@ -269,11 +269,17 @@ void TPlayer::order_training(std::string orders)
         if (output.is_open())
         {
             if (this->identity == 'P')
+            {
                 training_output.append("0 B ");
+                suffix = this->units[0]->get_is_base_busy();
+            }
             else
+            {
                 training_output.append("1 B ");
-
-            suffix = this->units[units.size() - 1]->get_type();
+                suffix = this->units[0]->get_is_base_busy();
+            }
+            
+            // training_output.append(std::to_string(suffix));
             training_output += suffix;
             training_output.append("\n");
 

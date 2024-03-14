@@ -57,9 +57,9 @@ void TRound::read_status()
 
 void TRound::write_status()
 {
-    std::ofstream output;
     std::remove(this->status_filename.c_str());
-    output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
+    // output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
+    std::ofstream output{this->status_filename};
 
     std::string output_line;
 
@@ -74,7 +74,9 @@ void TRound::write_status()
         for (auto el : this->player_ptr->units)
         {
             output_line += el->get_affiliation();
+            // output_line.append(std::to_string(el->get_affiliation()));
             output_line.append(" ");
+            // output_line.append(std::to_string(el->get_type()));
             output_line += el->get_type();
             output_line.append(" ");
             output_line.append(std::to_string(el->get_id()));
@@ -89,6 +91,7 @@ void TRound::write_status()
             {
                 output_line.append(" ");
                 output_line += el->get_is_base_busy();
+                // output_line.append(std::to_string(el->get_is_base_busy()));
             }
 
             output_line.append("\n");
