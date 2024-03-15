@@ -43,15 +43,17 @@ class TMediator
         TMap* map{nullptr};
         long player1_gold_from_previous_round{};
         long player2_gold_from_previous_round{};
-        unsigned int player1_training_time_left;
-        unsigned int player2_training_time_left;
+        // unsigned int player1_training_time_left;
+        // unsigned int player2_training_time_left;
         std::string status_filename = "../status.txt";
         std::string orders_filename = "../orders.txt";
         std::string player1_filename = "../player1.txt";
         std::string player2_filename = "../player2.txt";
         unsigned int player1_round_counter{1};
         unsigned int player2_round_counter{1};
-        long previous_player_gold{};
+        // long previous_player_gold{};
+        int player1_units{0};
+        int player2_units{0};
 };
 
 #endif

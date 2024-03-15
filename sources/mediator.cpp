@@ -2,7 +2,7 @@
 
 #include "../headers/functions.h"
 
-std::string bar(50, '=');
+std::string bar(58, '=');
 
 int main(int argc, char** argv)
 {
@@ -21,8 +21,8 @@ int main(int argc, char** argv)
             max_round_number++;
     }
 
-    std::cout << "Playing " << max_round_number << "rounds." << std::endl;
-    
+    std::cout << std::endl << "Playing " << max_round_number << " rounds." << std::endl;
+
     TMediator arbiter = TMediator();
 
     /* CLEAR PLAYER AND STATUS FILES */

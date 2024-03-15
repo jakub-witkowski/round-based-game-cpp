@@ -31,7 +31,7 @@ void TUnit::set_id(unsigned int id)
     this->id = id;
 }
 
-void TUnit::set_stamina(unsigned int st)
+void TUnit::set_stamina(int st)
 {
     this->stamina = st;
 }
@@ -142,7 +142,7 @@ char TUnit::get_is_base_busy()
     return this->is_base_busy;
 }
 
-unsigned int TUnit::get_stamina()
+int TUnit::get_stamina()
 {
     return this->stamina;
 }

@@ -320,22 +320,22 @@ void TMediator::update_round_number(std::string p)
 
 void TMediator::settle_outcome()
 {
-    unsigned int player1_units{0};
-    unsigned int player2_units{0};
-
     for (auto el : this->units)
     {
         if (el->get_affiliation() == 'P')
-            player1_units++;
+            this->player1_units += 1;
         else if (el->get_affiliation() == 'E')
-            player2_units++;
+            this->player2_units += 1;
     }
 
-    if (player1_units > player2_units)
+    std::cout << "Player 1: " << this->player1_units << " units on the map." << std::endl;
+    std::cout << "Player 2: " << this->player2_units << " units on the map." << std::endl;
+
+    if (this->player1_units > this->player2_units)
         std::cout << "Player 1 wins!" << std::endl;
-    else if (player2_units > player1_units)
+    else if (this->player2_units > this->player1_units)
         std::cout << "Player 2 wins!" << std::endl;
-    if (player1_units == player2_units)
+    if (this->player1_units == this->player2_units)
         std::cout << "It's a tie!" << std::endl;
 }
 
@@ -371,6 +371,11 @@ void TMediator::add_base(std::string line)
     busy = line[line.size() - 1];
 
     this->units.push_back(new TBase(aff, x, y, id, stamina, busy));
+
+    if (aff == 'P')
+        this->player1_units++;
+    else if (aff == 'E')
+        this->player2_units++;
 }
 
 void TMediator::add_unit(char type, std::string player)
@@ -405,6 +410,11 @@ void TMediator::add_unit(char type, std::string player)
             this->units.push_back(new TWorker(aff, this->map));
             break;
     }
+
+    if (player == "player1")
+        this->player1_units++;
+    else if (player == "player2")
+        this->player2_units++;
 }
 
 void TMediator::add_unit(std::string line)
@@ -461,6 +471,11 @@ void TMediator::add_unit(std::string line)
             this->units.push_back(new TWorker(aff, x, y, id, stamina));
             break;
     }
+
+    if (aff == 'P')
+        this->player1_units++;
+    else if (aff == 'E')
+        this->player2_units++;
 }
 
 void TMediator::update_coordinates(std::string line)
@@ -540,15 +555,22 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
                 victory = true;
                 std::cout << "Unit " << el->get_id() << " is defeated." << std::endl;
 
+                char aff = el->get_affiliation();
+
+                if (aff == 'P')
+                    this->player1_units--;
+                else if (aff == 'E')
+                    this->player2_units--;
+
                 /* if base is defeated, the game is over */
                 if (el->get_type() == 'B')
                 {
                     std::cout << "Game over. ";
 
                     if (el->get_affiliation() == 'P')
-                        std::cout << "Player 2 wins!";
+                        std::cout << "Player 2 wins!" << std::endl;
                     if (el->get_affiliation() == 'E')
-                        std::cout << "Player 1 wins!";
+                        std::cout << "Player 1 wins!" << std::endl;
                     
                     std::exit(EXIT_SUCCESS);
                 }

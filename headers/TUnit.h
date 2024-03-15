@@ -21,7 +21,7 @@ class TUnit
         void set_type(char);
         void set_coordinates(unsigned int, unsigned int);
         void set_id(unsigned int);
-        void set_stamina(unsigned int);
+        void set_stamina(int);
         void set_speed(unsigned int);
         void set_cost(unsigned int);
         void set_attack_range(unsigned int);
@@ -45,7 +45,7 @@ class TUnit
         bool get_may_attack_enemy_units();
         unsigned int get_attack_range();
         char get_is_base_busy();
-        unsigned int get_stamina();
+        int get_stamina();
         void set_attack_table(int, int, int, int, int, int, int, int);
         void set_as_opponent(int);
         int get_attack_table(int);
@@ -64,7 +64,7 @@ class TUnit
         char type;
         std::pair<unsigned int,unsigned int> coordinates;
         unsigned int id;
-        unsigned int stamina;
+        int stamina;
         unsigned int speed;
         unsigned int cost;
         unsigned int attack_range;
