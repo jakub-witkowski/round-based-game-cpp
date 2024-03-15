@@ -318,10 +318,26 @@ void TMediator::update_round_number(std::string p)
         this->player2_round_counter++;
 }
 
-// void TMediator::set_gold(long g)
-// {
-//     this->gold = g;
-// }
+void TMediator::settle_outcome()
+{
+    unsigned int player1_units{0};
+    unsigned int player2_units{0};
+
+    for (auto el : this->units)
+    {
+        if (el->get_affiliation() == 'P')
+            player1_units++;
+        else if (el->get_affiliation() == 'E')
+            player2_units++;
+    }
+
+    if (player1_units > player2_units)
+        std::cout << "Player 1 wins!" << std::endl;
+    else if (player2_units > player1_units)
+        std::cout << "Player 2 wins!" << std::endl;
+    if (player1_units == player2_units)
+        std::cout << "It's a tie!" << std::endl;
+}
 
 void TMediator::add_base(std::string line)
 {
@@ -523,6 +539,19 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
                 el->set_is_defeated(true);
                 victory = true;
                 std::cout << "Unit " << el->get_id() << " is defeated." << std::endl;
+
+                /* if base is defeated, the game is over */
+                if (el->get_type() == 'B')
+                {
+                    std::cout << "Game over. ";
+
+                    if (el->get_affiliation() == 'P')
+                        std::cout << "Player 2 wins!";
+                    if (el->get_affiliation() == 'E')
+                        std::cout << "Player 1 wins!";
+                    
+                    std::exit(EXIT_SUCCESS);
+                }
             }
         }
     }

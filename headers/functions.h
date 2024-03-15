@@ -55,7 +55,7 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
         << std::setw(9) << "Y"
         << std::setw(9) << "St"
         << std::setw(9) << "Busy"
-        << std::setw(9) << "Time"
+        // << std::setw(9) << "Time"
         << std::endl;
 
     for (auto i : u)
@@ -73,8 +73,8 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
         
         if (i->type == 'B')
             view 
-            << std::setw(9) << i->is_base_busy
-            << std::setw(9) << i->training_time_left;
+            << std::setw(9) << i->is_base_busy;
+            // << std::setw(9) << i->training_time_left;
         
         view << std::endl;
     }

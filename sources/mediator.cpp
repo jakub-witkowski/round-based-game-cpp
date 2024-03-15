@@ -9,7 +9,10 @@ int main(int argc, char** argv)
     unsigned int max_round_number;
     
     if (!argv[1])
+    {
         max_round_number = 6;
+        std::cout << "No number of rounds passed as parameter; default set at 6." << std::endl;
+    }
     else
     {
         max_round_number = std::stoi(argv[1]);
@@ -18,6 +21,8 @@ int main(int argc, char** argv)
             max_round_number++;
     }
 
+    std::cout << "Playing " << max_round_number << "rounds." << std::endl;
+    
     TMediator arbiter = TMediator();
 
     /* CLEAR PLAYER AND STATUS FILES */
@@ -59,6 +64,9 @@ int main(int argc, char** argv)
         arbiter.write_status("player2");
         arbiter.update_round_number("player2");
     }
+
+    std::cout << std::endl << bar << std::endl << std::endl;
+    arbiter.settle_outcome();
 
     return 0;
 }

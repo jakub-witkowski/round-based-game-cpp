@@ -26,6 +26,7 @@ class TMediator
         std::string get_player1_filename();
         std::string get_player2_filename();
         void update_round_number(std::string);
+        void settle_outcome();
 
         // void set_gold(long);
         void add_base(std::string);
