@@ -15,6 +15,7 @@ class TMediator
         ~TMediator();
 
         void load_status();
+        void generate_status_file();
         void load_orders();
         void load_player_file(std::string);
         void write_status(std::string);
@@ -22,6 +23,8 @@ class TMediator
 
         unsigned int get_player1_round_number();
         unsigned int get_player2_round_number();
+        std::string get_player1_filename();
+        std::string get_player2_filename();
         void update_round_number(std::string);
 
         // void set_gold(long);

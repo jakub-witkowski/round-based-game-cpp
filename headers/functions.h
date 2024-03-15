@@ -85,9 +85,10 @@ std::ostream& operator<<(std::ostream& view, std::vector<TUnit*> u)
 /* display a player */
 std::ostream& operator<<(std::ostream& view, TPlayer* p)
 {
-    view << "Player: " << std::endl;
-    view << "Identity: " << p->identity << std::endl;
-    view << "Gold: " << p->gold << std::endl;
+    view
+    << "Player: " << p->identity
+    << ", Gold: " << p->gold
+    << std::endl;
 
     return view;
 }

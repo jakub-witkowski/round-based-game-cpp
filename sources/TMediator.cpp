@@ -57,6 +57,36 @@ void TMediator::load_status()
     }
 }
 
+void TMediator::generate_status_file()
+{
+    std::ofstream status_output{this->status_filename};
+    std::string line;
+    unsigned int x = this->map->get_map_size_x() - 1;
+    unsigned int y = this->map->get_map_size_y() - 1;
+
+    if (status_output.is_open())
+    {
+        line.append("2000");
+        line.append("\n");
+        status_output << line;
+        line.clear();
+
+        line.append("P B 1 0 0 200 0");
+        line.append("\n");
+        status_output << line;
+        line.clear();
+    
+        line.append("E B 2 ");
+        line.append(std::to_string(x));
+        line.append(" ");
+        line.append(std::to_string(y));
+        line.append(" 200 0");
+        line.append("\n");
+        status_output << line;
+        line.clear();
+    }
+}
+
 void TMediator::load_orders()
 {
     std::ifstream input{orders_filename};
@@ -268,6 +298,16 @@ unsigned int TMediator::get_player1_round_number()
 unsigned int TMediator::get_player2_round_number()
 {
     return this->player2_round_counter;
+}
+
+std::string TMediator::get_player1_filename()
+{
+    return this->player1_filename;
+}
+
+std::string TMediator::get_player2_filename()
+{
+    return this->player2_filename;
 }
 
 void TMediator::update_round_number(std::string p)
