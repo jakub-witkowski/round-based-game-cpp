@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 
     std::cout << std::endl << "Playing " << max_round_number << " rounds." << std::endl;
 
-    TMediator arbiter = TMediator();
+    TMediator arbiter = TMediator(max_round_number);
 
     /* CLEAR PLAYER AND STATUS FILES */
     std::remove(arbiter.get_player1_filename().c_str());

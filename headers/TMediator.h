@@ -11,7 +11,7 @@
 class TMediator
 {
     public:
-        TMediator();
+        TMediator(int);
         ~TMediator();
 
         void load_status();
@@ -26,6 +26,7 @@ class TMediator
         std::string get_player1_filename();
         std::string get_player2_filename();
         void update_round_number(std::string);
+        void perform_unit_census();
         void settle_outcome();
 
         // void set_gold(long);
@@ -41,6 +42,7 @@ class TMediator
 
     private:
         TMap* map{nullptr};
+        unsigned int total_number_of_rounds;
         long player1_gold_from_previous_round{};
         long player2_gold_from_previous_round{};
         // unsigned int player1_training_time_left;
