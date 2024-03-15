@@ -2,19 +2,31 @@
 
 #include "../headers/functions.h"
 
-const unsigned int max_round_number{20};
 std::string bar(50, '=');
 
-int main()
+int main(int argc, char** argv)
 {
+    unsigned int max_round_number;
+    
+    if (!argv[1])
+        max_round_number = 6;
+    else
+    {
+        max_round_number = std::stoi(argv[1]);
+    
+        if ((max_round_number % 2) != 0)
+            max_round_number++;
+    }
+
     TMediator arbiter = TMediator();
 
-    /* CLEAR PLAYER FILES */
+    /* CLEAR PLAYER AND STATUS FILES */
     std::remove(arbiter.get_player1_filename().c_str());
     std::remove(arbiter.get_player2_filename().c_str());
     std::remove("../status.txt");
     arbiter.generate_status_file();
 
+    /* Main loop */
     while ((arbiter.get_player1_round_number() + arbiter.get_player2_round_number()) <= max_round_number)
     {
         std::cout << std::endl << bar << std::endl << std::endl;
