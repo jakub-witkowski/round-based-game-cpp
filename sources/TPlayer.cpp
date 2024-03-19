@@ -4,7 +4,7 @@
 
 TPlayer::TPlayer()
 {
-    // std::cout << "TPlayer default constructor called" << std::endl;
+
 }
 
 TPlayer::TPlayer(char id, TMap* m) : identity(id), gold(2000), map_ptr(m)
@@ -14,7 +14,7 @@ TPlayer::TPlayer(char id, TMap* m) : identity(id), gold(2000), map_ptr(m)
 
 TPlayer::TPlayer(char id, long g, TMap* m) : identity(id), gold(g), map_ptr(m)
 {
-    // std::cout << "TPlayer constructor called" << std::endl;
+
 }
 
 TPlayer::~TPlayer()
@@ -26,7 +26,6 @@ TPlayer::~TPlayer()
             delete units[i];
         }
     }
-    // std::cout << "TPlayer destructor called" << std::endl;
 }
 
 int TPlayer::cast_dice(int min, int max)
@@ -80,7 +79,6 @@ void TPlayer::order_training(std::string orders)
                 {
                     phrase = "training a worker";
                     temporary_unit = new TWorker(this->identity, this->map_ptr);
-                    // this->set_base_busy(this->identity, 'W');
                     choice_made = true;
                 }
                 else if ((this->gold >= 100) && (this->gold < 250))
@@ -90,14 +88,12 @@ void TPlayer::order_training(std::string orders)
                     {
                         phrase = "training a worker";
                         temporary_unit = new TWorker(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'W');
                         choice_made = true;
                     }
                     else if (drawing_result > 50)
                     {
                         phrase = "training a pikeman";
                         temporary_unit = new TPikeman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'P');
                         choice_made = true;
                     }
                 }
@@ -108,28 +104,24 @@ void TPlayer::order_training(std::string orders)
                     {
                         phrase = "training a worker";
                         temporary_unit = new TWorker(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'W');
                         choice_made = true;
                     }
                     else if (drawing_result > 25 && drawing_result <= 50)
                     {
                         phrase = "training a pikeman";
                         temporary_unit = new TPikeman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'P');
                         choice_made = true;
                     }
                     else if (drawing_result > 50 && drawing_result < 75)
                     {
                         phrase = "training a swordsman";
                         temporary_unit = new TSwordsman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'S');
                         choice_made = true;
                     }
                     else if (drawing_result > 75 && drawing_result <= 100)
                     {
                         phrase = "training an archer";
                         temporary_unit = new TArcher(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'A');
                         choice_made = true;
                     }
                 }
@@ -140,35 +132,30 @@ void TPlayer::order_training(std::string orders)
                     {
                         phrase = "training a worker";
                         temporary_unit = new TWorker(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'W');
                         choice_made = true;
                     }
                     else if (drawing_result > 20 && drawing_result <= 40)
                     {
                         phrase = "training a pikeman";
                         temporary_unit = new TPikeman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'P');
                         choice_made = true;
                     }
                     else if (drawing_result > 40 && drawing_result <= 60)
                     {
                         phrase = "training a swordsman";
                         temporary_unit = new TSwordsman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'S');
                         choice_made = true;
                     }
                     else if (drawing_result > 60 && drawing_result <= 80)
                     {
                         phrase = "training an archer";
                         temporary_unit = new TArcher(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'A');
                         choice_made = true;
                     }
                     else if (drawing_result > 80 && drawing_result <= 100)
                     {
                         phrase = "training a knight";
                         temporary_unit = new TKnight(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'K');
                         choice_made = true;
                     }
                 }
@@ -179,42 +166,36 @@ void TPlayer::order_training(std::string orders)
                     {
                         phrase = "training a worker";
                         temporary_unit = new TWorker(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'W');
                         choice_made = true;
                     }
                     else if ((3 * drawing_result) > 50 && (3 * drawing_result) <= 100)
                     {
                         phrase = "training a pikeman";
                         temporary_unit = new TPikeman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'P');
                         choice_made = true;
                     }
                     else if ((3 * drawing_result) > 100 && (3 * drawing_result) <= 150)
                     {
                         phrase = "training a swordsman";
                         temporary_unit = new TSwordsman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'S');
                         choice_made = true;
                     }
                     else if ((3 * drawing_result) > 150 && (3 * drawing_result) <= 200)
                     {
                         phrase = "training an archer";
                         temporary_unit = new TArcher(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'A');
                         choice_made = true;
                     }
                     else if ((3 * drawing_result) > 200 && (3 * drawing_result) <= 250)
                     {
                         phrase = "training a knight";
                         temporary_unit = new TKnight(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'K');
                         choice_made = true;
                     }
                     else if ((3 * drawing_result) > 250 && (3 * drawing_result) <= 300)
                     {
                         phrase = "producing a ram";
                         temporary_unit = new TRam(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'R');
                         choice_made = true;
                     }
                 }
@@ -225,49 +206,42 @@ void TPlayer::order_training(std::string orders)
                     {
                         phrase = "training a worker";
                         temporary_unit = new TWorker(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'W');
                         choice_made = true;
                     }
                     else if ((drawing_result * 3.5) > 50 && (drawing_result * 3.5) <= 100)
                     {
                         phrase = "training a pikeman";
                         temporary_unit = new TPikeman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'P');
                         choice_made = true;
                     }
                     else if ((drawing_result * 3.5) > 100 && (drawing_result * 3.5) <= 150)
                     {
                         phrase = "training a swordsman";
                         temporary_unit = new TSwordsman(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'S');
                         choice_made = true;
                     }
                     else if ((drawing_result * 3.5) > 150 && (drawing_result * 3.5) <= 200)
                     {
                         phrase = "training an archer";
                         temporary_unit = new TArcher(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'A');
                         choice_made = true;
                     }
                     else if ((drawing_result * 3.5) > 200 && (drawing_result * 3.5) <= 250)
                     {
                         phrase = "training a knight";
                         temporary_unit = new TKnight(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'K');
                         choice_made = true;
                     }
                     else if ((drawing_result * 3.5) > 250 && (drawing_result * 3.5) <= 300)
                     {
                         phrase = "producing a ram";
                         temporary_unit = new TRam(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'R');
                         choice_made = true;
                     }
                     else if ((drawing_result * 3.5) > 300)
                     {
                         phrase = "producing a catapult";
                         temporary_unit = new TCatapult(this->identity, this->map_ptr);
-                        // this->set_base_busy(this->identity, 'C');
                         choice_made = true;
                     }	
                 }
@@ -372,11 +346,6 @@ void TPlayer::order_move(TUnit* u, std::string orders)
         distance = cast_dice(1,5);
         switch (distance)
         {
-            /*case 0:
-                x_axis_move = 0;
-                y_axis_move = 0;
-                dice_cast = false;
-                break;*/
             case 1:
                 row_number = cast_dice(0,1);
                 x_axis_move = spread1[row_number][0];
@@ -412,14 +381,8 @@ void TPlayer::order_move(TUnit* u, std::string orders)
     else if (u->get_type() != 'K' && u->get_type() != 'B')
     {
         distance = cast_dice(1,2);
-        //distance = r(0,2);
         switch (distance)
         {
-            /*case 0:
-                x_axis_move = 0;
-                y_axis_move = 0;
-                dice_cast = false;
-                break;*/
             case 1:
                 row_number = cast_dice(0,1);
                 x_axis_move = spread1[row_number][0];
@@ -435,103 +398,92 @@ void TPlayer::order_move(TUnit* u, std::string orders)
         }
     }
 
-        /* Validating target coordinates */
-        if (is_dice_cast == true)
+    /* if the unit is a worker currently at the mine, remain at the mine */
+    if (u->get_type() == 'W')
+    {
+        if (this->map_ptr->get_map_field_info(u->get_coordinates().first, u->get_coordinates().second) == 6)
+            is_dice_cast = false;
+    }
+
+    /* Validating target coordinates */
+    if (is_dice_cast == true)
+    {
+        /* validating the draws against the map */
+        if (u->get_affiliation() == 'P')
+            if (((u->get_coordinates().first + x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second + y_axis_move) >= this->map_ptr->get_map_size_y()))
+                is_dice_cast = false; // cannot go outside the map
+        if (u->get_affiliation() == 'E')
+            if (((u->get_coordinates().first - x_axis_move) < 0) || ((u->get_coordinates().second - y_axis_move) < 0) || ((u->get_coordinates().first - x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second - y_axis_move) >= this->map_ptr->get_map_size_y()))
+                is_dice_cast = false; // cannot go outside the map; the coordinates are unsigned int, so large positive values are also checked for
+    }
+
+    if (is_dice_cast == true)
+    {
+        if (distance > u->get_remaining_movement_points())
+            is_dice_cast = false; // cannot exceed remaining movement
+    }
+
+    if (is_dice_cast == true)
+    {
+        if (u->get_affiliation() == 'P')
         {
-            /* validating the draws against the map */
-            if (u->get_affiliation() == 'P')
-                if (((u->get_coordinates().first + x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second + y_axis_move) >= this->map_ptr->get_map_size_y()))
-                    is_dice_cast = false; // cannot go outside the map
-            if (u->get_affiliation() == 'E')
-                if (((u->get_coordinates().first - x_axis_move) < 0) || ((u->get_coordinates().second - y_axis_move) < 0) || ((u->get_coordinates().first - x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second - y_axis_move) >= this->map_ptr->get_map_size_y()))
-                    is_dice_cast = false; // cannot go outside the map; the coordinates are unsigned int, so large positive values are also checked for
+            if (this->map_ptr->get_map_field_info(u->get_coordinates().first + x_axis_move, u->get_coordinates().second + y_axis_move) == 9)
+                is_dice_cast = false; // cannot go on natural obstacles
+        }
+        if (u->get_affiliation() == 'E')
+        {
+            if (this->map_ptr->get_map_field_info(u->get_coordinates().first - x_axis_move, u->get_coordinates().second - y_axis_move) == 9)
+                is_dice_cast = false; // cannot go on natural obstacles
+        }
+    }
+
+    if (is_dice_cast == true)
+    {
+        if (is_map_field_occupied(u->get_affiliation(), u->get_coordinates().first, u->get_coordinates().second) == true)
+            is_dice_cast = false;
+        else
+            is_dice_cast = true;
+    }
+
+    if (is_dice_cast == true)
+    {
+        if (u->get_affiliation() == 'P')
+        {
+            target_x = u->get_coordinates().first + x_axis_move;
+            target_y = u->get_coordinates().second + y_axis_move;
+        }
+        else if (u->get_affiliation() == 'E')
+        {
+            target_x = u->get_coordinates().first - x_axis_move;
+            target_y = u->get_coordinates().second - y_axis_move;
         }
 
-        // std::cout << "Past map validation" << std::endl;
+        u->update_remaining_movement_points(distance);
 
-        if (is_dice_cast == true)
-        {
-            if (distance > u->get_remaining_movement_points())
-                is_dice_cast = false; // cannot exceed remaining movement
-        }
+        std::ofstream output;
+        output.open(orders, std::ofstream::out | std::ofstream::app);
 
-        // std::cout << "Past remaining movement point validation" << std::endl;
+        std::string move_order_output;
+        move_order_output.append(std::to_string(u->get_id()));
+        move_order_output.append(" M ");
+        move_order_output.append(std::to_string(target_x));
+        move_order_output.append(" ");
+        move_order_output.append(std::to_string(target_y));
+        move_order_output.append("\n");
 
-        if (is_dice_cast == true)
-        {
-            if (u->get_affiliation() == 'P')
-            {
-                if (this->map_ptr->get_map_field_info(u->get_coordinates().first + x_axis_move, u->get_coordinates().second + y_axis_move) == 9)
-                    is_dice_cast = false; // cannot go on natural obstacles
-            }
-            if (u->get_affiliation() == 'E')
-            {
-                // std::cout << "u->get_coordinates().first: " << u->get_coordinates().first << std::endl;
-                // std::cout << "x_axis_move: " << x_axis_move << std::endl;
-                // std::cout << "u->get_coordinates().second: " << u->get_coordinates().second << std::endl;
-                // std::cout << "y_axis_move: " << y_axis_move << std::endl;
-                // std::cout << "u->get_coordinates().first - x_axis_move: " << u->get_coordinates().first - x_axis_move << std::endl;
-                // std::cout << "u->get_coordinates().second - y_axis_move: " << u->get_coordinates().second - y_axis_move << std::endl;
-                if (this->map_ptr->get_map_field_info(u->get_coordinates().first - x_axis_move, u->get_coordinates().second - y_axis_move) == 9)
-                    is_dice_cast = false; // cannot go on natural obstacles
-            }
-        }
+        output << move_order_output;
+        output.close();
 
-        // std::cout << "Past get_map_field_info() validation" << std::endl;
-
-        if (is_dice_cast == true)
-        {
-            if (is_map_field_occupied(u->get_affiliation(), u->get_coordinates().first, u->get_coordinates().second) == true)
-                is_dice_cast = false;
-            else
-                is_dice_cast = true;
-        }
-
-        if (is_dice_cast == true)
-        {
-            if (u->get_affiliation() == 'P')
-            {
-                target_x = u->get_coordinates().first + x_axis_move;
-                target_y = u->get_coordinates().second + y_axis_move;
-            }
-            else if (u->get_affiliation() == 'E')
-            {
-                target_x = u->get_coordinates().first - x_axis_move;
-                target_y = u->get_coordinates().second - y_axis_move;
-            }
-
-        // std::cout << "Past target coordinates assignment" << std::endl;
-
-            u->update_remaining_movement_points(distance);
-
-        // std::cout << "Movement points updated" << std::endl;        
-
-            std::ofstream output;
-            output.open(orders, std::ofstream::out | std::ofstream::app);
-
-            std::string move_order_output;
-            move_order_output.append(std::to_string(u->get_id()));
-            move_order_output.append(" M ");
-            move_order_output.append(std::to_string(target_x));
-            move_order_output.append(" ");
-            move_order_output.append(std::to_string(target_y));
-            move_order_output.append("\n");
-
-            output << move_order_output;
-            output.close();
-
-            std::cout
-            << "Ordering unit "
-            << u->get_id()
-            << " to move to x: "
-            << target_x
-            << ", y: "
-            << target_y
-            << ". "
-            << std::endl;
-    
-            // u->set_coordinates(target_x, target_y);
-        }
+        std::cout
+        << "Ordering unit "
+        << u->get_id()
+        << " to move to x: "
+        << target_x
+        << ", y: "
+        << target_y
+        << ". "
+        << std::endl;
+    }
 }
 void TPlayer::attack_enemy(std::string orders)
 {
@@ -591,7 +543,6 @@ void TPlayer::order_attack(TUnit* u, std::string orders)
 
 bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
 {
-    // std::cout << "is_map_field_occupied()" << std::endl;
     int number_of_units_at_the_field{0};
     char opponent_affiliation;
 
@@ -610,10 +561,7 @@ bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
     }
 
     if (number_of_units_at_the_field > 0)
-    {
-        // std::cout << "Cannot move to enemy-held territory." << std::endl;
         return true;
-    }
     else
         return false;
 }
@@ -632,7 +580,6 @@ unsigned int TPlayer::are_there_workers_at_the_mine()
         }
     }
 
-    // std::cout << "Workers at the mine: " << number_of_workers_at_the_mine << std::endl;
     return number_of_workers_at_the_mine;
 }
 
@@ -685,7 +632,6 @@ void TPlayer::add_unit(std::string line, TMap* m)
     unsigned int x{};
     unsigned int y{};
     unsigned int stamina{};
-    // unsigned int time_left{};
 
     for (size_t i = 0; i < line.size(); i++)
     {    
@@ -750,8 +696,6 @@ void TPlayer::write_player_file()
     std::string fname;
     std::string player_file;
     int base_index;
-    // char type;
-    // unsigned int training_time_left;
 
     if (this->identity == 'P')
     {
@@ -772,43 +716,7 @@ void TPlayer::write_player_file()
     {
         if (this->units[base_index]->get_is_base_busy() != '0')
         {
-            // type = this->units[base_index]->get_is_base_busy();
             player_file.append("T ");
-
-            // switch(type)
-            // {
-            //     case 'A':
-            //         training_time = 3;
-            //         break;
-            //     case 'C':
-            //         training_time = 6;
-            //         break;
-            //     case 'K':
-            //         training_time = 5;
-            //         break;
-            //     case 'P':
-            //         training_time = 3;
-            //         break;
-            //     case 'R':
-            //         training_time = 4;
-            //         break;
-            //     case 'S':
-            //         training_time = 3;
-            //         break;
-            //     case 'W':
-            //         training_time = 2;
-            //         break; 
-            // }
-
-            // if (this->units[base_index]->get_training_started_in_the_present_round() == true)
-            //     training_time_left = this->units[base_index]->get_training_time_left();
-            // else if (this->units[base_index]->get_training_started_in_the_present_round() == false)
-            // {
-            //     if (this->units[base_index]->get_training_time_left() >= 1)
-            //         training_time_left = this->units[base_index]->get_training_time_left() - 1;
-            // }
-            // player_file.append(std::to_string(this->units[units.size() - 1]->get_training_time() - 1));
-                        
             player_file.append(std::to_string(this->units[base_index]->get_training_time_left()));
             player_file.append("\n");
         }
