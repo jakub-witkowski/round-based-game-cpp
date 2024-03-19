@@ -184,6 +184,31 @@ void TRound::update_training_times()
                 break; 
         }
 
+        size_t new_unit_index = this->get_player_ptr()->units.size() - 1;
+        unsigned int new_unit_current_id = this->get_player_ptr()->units[new_unit_index]->get_id();
+        unsigned int repetitions{0};
+
+        std::cout << "New unit id before checking for repetitions: " << new_unit_current_id << std::endl;
+        std::cout << "Current unit counter value: " << this->get_player_ptr()->units[new_unit_index]->get_unit_count() << std::endl;
+
+        /* check if unit ids are unique */
+        for (auto el : this->get_player_ptr()->units)
+        {
+            if (el->get_id() == new_unit_current_id)
+                repetitions++;
+        }
+
+        if (repetitions > 1)
+        {
+            new_unit_current_id++;
+            this->get_player_ptr()->units[new_unit_index]->set_id(new_unit_current_id);
+            this->get_player_ptr()->units[new_unit_index]->update_unit_counter();
+        }
+
+        std::cout << "Number of repetitions: " << repetitions << std::endl;
+        std::cout << "New unit id after checking for repetitions: " << new_unit_current_id << std::endl;
+        std::cout << "New unit counter value: " << this->get_player_ptr()->units[new_unit_index]->get_unit_count() << std::endl;
+
         this->get_player_ptr()->units[base_index]->set_training_time_left(0);
         this->get_player_ptr()->units[base_index]->set_is_base_busy('0');
     }
