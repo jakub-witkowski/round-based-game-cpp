@@ -11,7 +11,7 @@ int main(int argc, char** argv)
     if (!argv[1])
     {
         max_round_number = 6;
-        std::cout << "No number of rounds passed as parameter; default set at 6." << std::endl;
+        std::cout << "No number of rounds passed as parameter; default set at 6 (3 rounds each)." << std::endl;
     }
     else
     {
@@ -21,7 +21,7 @@ int main(int argc, char** argv)
             max_round_number++;
     }
 
-    std::cout << std::endl << "Playing " << max_round_number / 2 << " rounds." << std::endl;
+    std::cout << std::endl << "Playing " << max_round_number / 2 << " rounds each." << std::endl;
 
     TMediator arbiter = TMediator(max_round_number);
 
@@ -39,14 +39,8 @@ int main(int argc, char** argv)
         arbiter.run("player1");
 
         arbiter.load_status();
-        // std::cout << "From within mediator: status loaded " << std::endl;
-        // std::cout << arbiter.units;
         arbiter.load_orders();
-        // std::cout << "From within mediator: orders loaded " << std::endl;
-        // std::cout << arbiter.units;
         arbiter.load_player_file("player1");
-        // std::cout << "From within mediator: player file loaded" << std::endl;
-        // std::cout << arbiter.units;
         arbiter.write_status("player1");
         arbiter.update_round_number("player1");
 
@@ -55,12 +49,8 @@ int main(int argc, char** argv)
         arbiter.run("player2");
 
         arbiter.load_status();
-        // std::cout << "From within mediator: status loaded " << std::endl;
         arbiter.load_orders();
-        // std::cout << "From within mediator: orders loaded " << std::endl;
         arbiter.load_player_file("player2");
-        // std::cout << "From within mediator: player file loaded" << std::endl;
-        // std::cout << arbiter.units;
         arbiter.write_status("player2");
         arbiter.update_round_number("player2");
     }

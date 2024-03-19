@@ -41,7 +41,6 @@ void TMediator::load_status()
 
         if (space_count == 0)
         {
-            // this->set_gold(std::stol(line));
             continue;
         }
         else if (space_count == 6)
@@ -171,23 +170,10 @@ void TMediator::load_player_file(std::string p)
             if (p == "player1")
             {
                 this->units[0]->set_training_time_left(std::stoi(line.substr(space_pos)));
-
-                // if (this->player1_training_time_left == 0)
-                // {
-                //     add_unit(this->units[0]->get_is_base_busy(), "player1");
-                //     this->units[0]->set_is_base_busy('0');
-                // }
             }
             else if (p == "player2")
             {
                 this->units[1]->set_training_time_left(std::stoi(line.substr(space_pos)));
-                // this->player2_training_time_left = std::stoi(line.substr(space_pos));
-
-                // if (this->player2_training_time_left == 0)
-                // {
-                //     add_unit(this->units[1]->get_is_base_busy(), "player2");
-                //     this->units[1]->set_is_base_busy('0');
-                // }
             }
         }
         
@@ -201,7 +187,6 @@ void TMediator::write_status(std::string p)
 
     std::ofstream status_output{this->status_filename};
     std::string line;
-    // status_output.open(this->status_filename, std::ofstream::out | std::ofstream::app);
 
     if (status_output.is_open())
     {
@@ -233,11 +218,9 @@ void TMediator::write_status(std::string p)
             if (el->get_is_defeated() == true)
                 continue;
 
-            // line.append(std::to_string(el->get_affiliation()));
             line += el->get_affiliation();
             line.append(" ");
 
-            // line.append(std::to_string(el->get_type()));
             line += el->get_type();
             line.append(" ");
 
@@ -255,7 +238,6 @@ void TMediator::write_status(std::string p)
             if (el->get_type() == 'B')
             {
                 line.append(" ");
-                // line.append(std::to_string(el->get_is_base_busy()));
                 line += el->get_is_base_busy();
             }
 
@@ -369,7 +351,6 @@ void TMediator::add_base(std::string line)
     pos = 0;
 
     aff = line[0];
-    // aff = (char) stoi(line.substr(0,space_pos[0]));
     id = stoi(line.substr(space_pos[1], space_pos[2]));
     x = stoi(line.substr(space_pos[2], space_pos[3]));
     y = stoi(line.substr(space_pos[3], space_pos[4]));
@@ -377,51 +358,7 @@ void TMediator::add_base(std::string line)
     busy = line[line.size() - 1];
 
     this->units.push_back(new TBase(aff, x, y, id, stamina, busy));
-
-    // if (aff == 'P')
-    //     this->player1_units++;
-    // else if (aff == 'E')
-    //     this->player2_units++;
 }
-
-/*void TMediator::add_unit(char type, std::string player)
-{
-    char aff;
-    if (player == "player1")
-        aff = 'P';
-    else if (player == "player2")
-        aff = 'E';
-
-    switch(type)
-    {
-        case 'A':
-            this->units.push_back(new TArcher(aff, this->map));
-            break;
-        case 'C':
-            this->units.push_back(new TCatapult(aff, this->map));
-            break;
-        case 'K':
-            this->units.push_back(new TKnight(aff, this->map));
-            break;
-        case 'P':
-            this->units.push_back(new TPikeman(aff, this->map));
-            break;
-        case 'R':
-            this->units.push_back(new TRam(aff, this->map));
-            break;
-        case 'S':
-            this->units.push_back(new TSwordsman(aff, this->map));
-            break;
-        case 'W':
-            this->units.push_back(new TWorker(aff, this->map));
-            break;
-    }
-
-    // if (player == "player1")
-    //     this->player1_units++;
-    // else if (player == "player2")
-    //     this->player2_units++;
-}*/
 
 void TMediator::add_unit(std::string line)
 {
@@ -477,11 +414,6 @@ void TMediator::add_unit(std::string line)
             this->units.push_back(new TWorker(aff, x, y, id, stamina));
             break;
     }
-
-    // if (aff == 'P')
-    //     this->player1_units++;
-    // else if (aff == 'E')
-    //     this->player2_units++;
 }
 
 void TMediator::update_coordinates(std::string line)
@@ -560,13 +492,6 @@ void TMediator::settle_fight(std::string line, size_t first_space, size_t second
                 el->set_is_defeated(true);
                 victory = true;
                 std::cout << "Unit " << el->get_id() << " is defeated." << std::endl;
-
-                // char aff = el->get_affiliation();
-
-                // if (aff == 'P')
-                //     this->player1_units--;
-                // else if (aff == 'E')
-                //     this->player2_units--;
 
                 /* if base is defeated, the game is over */
                 if (el->get_type() == 'B')
