@@ -21,7 +21,7 @@ int main(int argc, char** argv)
             max_round_number++;
     }
 
-    std::cout << std::endl << "Playing " << max_round_number << " rounds." << std::endl;
+    std::cout << std::endl << "Playing " << max_round_number / 2 << " rounds." << std::endl;
 
     TMediator arbiter = TMediator(max_round_number);
 

@@ -443,15 +443,19 @@ void TPlayer::order_move(TUnit* u, std::string orders)
                 if (((u->get_coordinates().first + x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second + y_axis_move) >= this->map_ptr->get_map_size_y()))
                     is_dice_cast = false; // cannot go outside the map
             if (u->get_affiliation() == 'E')
-                if (((u->get_coordinates().first - x_axis_move) < 0) || ((u->get_coordinates().second - y_axis_move) < 0))
-                    is_dice_cast = false; // cannot go outside the map
+                if (((u->get_coordinates().first - x_axis_move) < 0) || ((u->get_coordinates().second - y_axis_move) < 0) || ((u->get_coordinates().first - x_axis_move) >= this->map_ptr->get_map_size_x()) || ((u->get_coordinates().second - y_axis_move) >= this->map_ptr->get_map_size_y()))
+                    is_dice_cast = false; // cannot go outside the map; the coordinates are unsigned int, so large positive values are also checked for
         }
+
+        // std::cout << "Past map validation" << std::endl;
 
         if (is_dice_cast == true)
         {
             if (distance > u->get_remaining_movement_points())
                 is_dice_cast = false; // cannot exceed remaining movement
         }
+
+        // std::cout << "Past remaining movement point validation" << std::endl;
 
         if (is_dice_cast == true)
         {
@@ -462,10 +466,18 @@ void TPlayer::order_move(TUnit* u, std::string orders)
             }
             if (u->get_affiliation() == 'E')
             {
+                // std::cout << "u->get_coordinates().first: " << u->get_coordinates().first << std::endl;
+                // std::cout << "x_axis_move: " << x_axis_move << std::endl;
+                // std::cout << "u->get_coordinates().second: " << u->get_coordinates().second << std::endl;
+                // std::cout << "y_axis_move: " << y_axis_move << std::endl;
+                // std::cout << "u->get_coordinates().first - x_axis_move: " << u->get_coordinates().first - x_axis_move << std::endl;
+                // std::cout << "u->get_coordinates().second - y_axis_move: " << u->get_coordinates().second - y_axis_move << std::endl;
                 if (this->map_ptr->get_map_field_info(u->get_coordinates().first - x_axis_move, u->get_coordinates().second - y_axis_move) == 9)
                     is_dice_cast = false; // cannot go on natural obstacles
             }
         }
+
+        // std::cout << "Past get_map_field_info() validation" << std::endl;
 
         if (is_dice_cast == true)
         {
@@ -488,8 +500,12 @@ void TPlayer::order_move(TUnit* u, std::string orders)
                 target_y = u->get_coordinates().second - y_axis_move;
             }
 
+        // std::cout << "Past target coordinates assignment" << std::endl;
+
             u->update_remaining_movement_points(distance);
-            
+
+        // std::cout << "Movement points updated" << std::endl;        
+
             std::ofstream output;
             output.open(orders, std::ofstream::out | std::ofstream::app);
 
@@ -575,6 +591,7 @@ void TPlayer::order_attack(TUnit* u, std::string orders)
 
 bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
 {
+    // std::cout << "is_map_field_occupied()" << std::endl;
     int number_of_units_at_the_field{0};
     char opponent_affiliation;
 
@@ -594,7 +611,7 @@ bool TPlayer::is_map_field_occupied(char aff, unsigned int x, unsigned int y)
 
     if (number_of_units_at_the_field > 0)
     {
-        std::cout << "Cannot move to enemy-held territory." << std::endl;
+        // std::cout << "Cannot move to enemy-held territory." << std::endl;
         return true;
     }
     else

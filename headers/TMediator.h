@@ -29,9 +29,8 @@ class TMediator
         void perform_unit_census();
         void settle_outcome();
 
-        // void set_gold(long);
         void add_base(std::string);
-        void add_unit(char, std::string);
+        // void add_unit(char, std::string);
         void add_unit(std::string);
         void update_coordinates(std::string);
         void settle_fight(std::string, size_t, size_t);
@@ -45,15 +44,13 @@ class TMediator
         unsigned int total_number_of_rounds;
         long player1_gold_from_previous_round{};
         long player2_gold_from_previous_round{};
-        // unsigned int player1_training_time_left;
-        // unsigned int player2_training_time_left;
+        // unsigned int new_unit_id{3};
         std::string status_filename = "../status.txt";
         std::string orders_filename = "../orders.txt";
         std::string player1_filename = "../player1.txt";
         std::string player2_filename = "../player2.txt";
         unsigned int player1_round_counter{1};
         unsigned int player2_round_counter{1};
-        // long previous_player_gold{};
         int player1_units{0};
         int player2_units{0};
 };

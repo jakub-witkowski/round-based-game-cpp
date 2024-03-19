@@ -384,7 +384,7 @@ void TMediator::add_base(std::string line)
     //     this->player2_units++;
 }
 
-void TMediator::add_unit(char type, std::string player)
+/*void TMediator::add_unit(char type, std::string player)
 {
     char aff;
     if (player == "player1")
@@ -421,7 +421,7 @@ void TMediator::add_unit(char type, std::string player)
     //     this->player1_units++;
     // else if (player == "player2")
     //     this->player2_units++;
-}
+}*/
 
 void TMediator::add_unit(std::string line)
 {

@@ -100,16 +100,23 @@ void play_round(char aff, std::string s1, std::string s2, std::string s3)
     std::unique_ptr<TRound> round(new TRound(aff, s1, s2, s3));
     // std::cout << "Mine coordinates: " << round->get_map_ptr()->find_mine().first << ", " << round->get_map_ptr()->find_mine().second;
     round->read_status();
+    // std::cout << "Status file loaded. " << std::endl;
     round->load_player_file();
+    // std::cout << "Player file loaded. " << std::endl;
     round->update_training_times();
+    // std::cout << "Training times updated. " << std::endl;
     std::cout << round->get_player_ptr();
     round->get_player_ptr()->mine_gold(round->get_player_ptr()->are_there_workers_at_the_mine() * 100);
     round->get_player_ptr()->order_training(s3);
     std::cout << round->get_player_ptr()->units;
+    // std::cout << "Ordering units to move: " << std::endl;
     round->get_player_ptr()->move_units(s3);
+    // std::cout << "Ordering units to attack the opponent: " << std::endl;
     round->get_player_ptr()->attack_enemy(s3);
     round->get_player_ptr()->write_player_file();
+    // std::cout << "Player file written. " << std::endl;
     round->write_status();
+    // std::cout << "Status file written. " << std::endl;
 }
 
 #endif
